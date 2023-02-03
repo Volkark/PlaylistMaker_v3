@@ -36,7 +36,7 @@
         app:icon="@drawable/ic_search"
         app:iconGravity="textStart"
         app:iconPadding="@dimen/icon_pad"
-        app:iconTint="@color/black"/>
+        app:iconTint="@color/black" />
 
     <Button
         android:id="@+id/button_media"
