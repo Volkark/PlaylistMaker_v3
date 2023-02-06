@@ -1,10 +1,25 @@
 <resources>
-    <string name="app_name" translatable="false">Playlist Maker</string>
+    <!-- activity_main.xml -->
+    <string name="app_name" translatable="false">Playlist maker</string>
     <string name="search" translatable="false">Поиск</string>
     <string name="media" translatable="false">Медиатека</string>
     <string name="settings" translatable="false">Настройки</string>
+
+    <!-- activity_settings.xml -->
     <string name="dark_theme" translatable="false">Темная тема</string>
-    <string name="application" translatable="false">Поделиться приложением</string>
-    <string name="condition" translatable="false">Пользовательское соглашение</string>
+    <string name="share" translatable="false">Поделиться приложением</string>
     <string name="support" translatable="false">Написать в поддержку</string>
+    <string name="agreement" translatable="false">Пользовательское соглашение</string>
+    <!-- SettingsActivity.kt / Поделится приложением -->
+    <string name="share_text" translatable="false">https://practicum.yandex.ru/profile/android-developer/</string>
+    <!-- SettingsActivity.kt / Написать в поддержку -->
+    <string name="send_mail" translatable="false">vvkarkov@yandex.ru</string>
+    <string name="send_text" translatable="false">Спасибо разработчикам и разработчицам за крутое приложение!</string>
+    <string name="send_subject" translatable="false">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
+    <!-- SettingsActivity.kt/ Пользовательское соглашение -->
+    <string name="practicum_offer" translatable="false">https://yandex.ru/legal/practicum_offer/</string>
+
+    <!-- activity_search -->
+    <string name="input_hint" translatable="false">Поиск</string>
+
 </resources>

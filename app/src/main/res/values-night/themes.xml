@@ -1,14 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.PlaylistMaker" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!-- Dark/Night application theme. для "Темной темы / Ночного режима" -->
+    <style name="Theme.PlaylistMaker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/dark_background</item>     <!-- Фон "Главного экрана" -->
+        <item name="colorPrimaryVariant">@color/purple_700</item>   <!-- Системный статус-бар -->
+        <item name="colorOnPrimary">@color/black</item>             <!-- Фон экрана "Настроек" -->
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/white</item>             <!-- Иконки "Настроек" -->
+        <item name="colorSecondaryVariant">@color/white</item>      <!-- Текст кнопки возврата -->
+        <item name="colorOnSecondary">@color/white</item>           <!-- Текст экрана "Настроек" -->
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
