@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="primary_text_size">22sp</dimen>
+    <dimen name="settings_text_size">16sp</dimen>
+    <dimen name="left_button_margin">17dp</dimen>
+    <dimen name="right_button_margin">15dp</dimen>
+    <dimen name="middle_button_margin">16dp</dimen>
+    <dimen name="button_corner_radius">16dp</dimen>
+    <dimen name="settings_button_height">61dp</dimen>
+    <dimen name="frame_margin">8dp</dimen>
+    <dimen name="icon_pad">10dp</dimen>
+    <dimen name="arrow_back_size">16dp</dimen>
+    <dimen name="arrow_back_start">20dp</dimen>
+</resources>
