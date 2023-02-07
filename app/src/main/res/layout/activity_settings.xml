@@ -4,111 +4,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="?attr/colorOnPrimary"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/arrow_back_start"
-        android:layout_marginTop="@dimen/arrow_back_start"
-        android:orientation="horizontal">
-        <ImageButton
-            android:id="@+id/return_from_settings"
-            android:src="@drawable/ic_arrow_back"
-            android:contentDescription="@string/app_name"
-            android:layout_width="@dimen/arrow_back_size"
-            android:layout_height="@dimen/arrow_back_size"
-            android:layout_gravity="center_vertical"
-            android:backgroundTint="@color/white"
-            android:foreground="?attr/selectableItemBackground"
+    <Button style="@style/returnButtonStyle"
+        android:id="@+id/return_from_settings"
+        android:text="@string/settings"
+        />
+
+    <LinearLayout style="@style/settingsBlockStyle"
+        android:layout_marginTop="40dp">
+
+        <Switch style="@style/settingsButtonStyle"
+            android:id="@+id/switch_dark_theme"
+            android:text="@string/dark_theme"
             />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="28dp"
-            android:text="@string/settings"
-            android:textColor="@color/button_text"
-            android:textSize="@dimen/primary_text_size"/>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="@dimen/frame_margin"
-        android:layout_marginEnd="@dimen/frame_margin"
-        android:layout_marginBottom="@dimen/frame_margin"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        <Button style="@style/settingsButtonStyle"
+            android:id="@+id/button_share"
+            android:text="@string/share"
+            app:icon="@drawable/ic_share"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/settings_button_height"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_switch"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:backgroundTint="@color/white"
-                android:text="@string/dark_theme"
-                android:textSize="@dimen/settings_text_size"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textColor="@color/button_text" />
-
-            <Switch
-                android:id="@+id/switch_dark_theme"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/white" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/button_application"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/settings_button_height"
-            android:backgroundTint="@color/white"
-            android:text="@string/application"
-            android:textSize="@dimen/settings_text_size"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="@color/button_text"
-            app:icon="@drawable/ic_application"
-            app:iconGravity="end"
-            app:iconTint="@color/black" />
-
-        <Button
+        <Button style="@style/settingsButtonStyle"
             android:id="@+id/button_support"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/settings_button_height"
-            android:backgroundTint="@color/white"
             android:text="@string/support"
-            android:textSize="@dimen/settings_text_size"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="@color/button_text"
-            app:icon="@drawable/ic_support"
-            app:iconGravity="end"
-            app:iconTint="@color/black" />
+            app:icon="@drawable/ic_support"/>
 
-        <Button
-            android:id="@+id/button_condition"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/settings_button_height"
-            android:backgroundTint="@color/white"
-            android:text="@string/condition"
-            android:textSize="@dimen/settings_text_size"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="@color/button_text"
-            app:icon="@drawable/ic_condition"
-            app:iconGravity="end"
-            app:iconTint="@color/black" />
-
+        <Button style="@style/settingsButtonStyle"
+            android:id="@+id/button_agreement"
+            android:text="@string/agreement"
+            app:icon="@drawable/ic_agreement"/>
     </LinearLayout>
 </LinearLayout>

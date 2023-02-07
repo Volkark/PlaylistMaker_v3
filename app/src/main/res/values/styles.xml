@@ -1,2 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- Стиль заголовка / activity_main.xml -->
+    <style name="mainTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textSize">@dimen/primary_text_size</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:layout_marginTop">@dimen/title_top</item>
+        <item name="android:layout_marginStart">@dimen/title_start</item>
+    </style>
+
+    <!-- Стиль кнопок «Главного экрана» / activity_main.xml -->
+    <style name="mainButtonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/primary_text_size</item>
+        <item name="android:textColor">@color/button_text</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:layout_marginStart">@dimen/left_button_margin</item>
+        <item name="android:layout_marginEnd">@dimen/right_button_margin</item>
+        <item name="android:layout_marginBottom">@dimen/middle_button_margin</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">@dimen/main_icon_pad</item>
+        <item name="iconTint">@color/button_text</item>
+    </style>
+
+    <!-- Стиль кнопок экрана «Настройки» / activity_settings.xml -->
+    <style name="settingsButtonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/settings_button_height</item>
+        <item name="android:padding">@dimen/settings_button_padding</item>
+        <item name="android:textSize">@dimen/settings_button_text_size</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="iconGravity">end</item>
+        <item name="iconTint">?attr/colorSecondary</item>
+    </style>
+
+    <!-- Стиль кнопки «Возврата» / activity_settings.xml, activity_search.xml, activity_media.xml -->
+    <style name="returnButtonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textSize">@dimen/primary_text_size</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:layout_marginStart">@dimen/settings_margin</item>
+        <item name="android:layout_marginEnd">@dimen/settings_margin</item>
+        <item name="android:layout_marginTop">@dimen/settings_margin</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:paddingStart">@dimen/return_button_padding</item>
+        <item name="android:paddingEnd">@dimen/return_button_padding</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="icon">@drawable/ic_arrow_back</item>
+        <item name="iconTint">?attr/colorSecondaryVariant</item>
+        <item name="iconPadding">@dimen/return_icon_pad</item>
+        <item name="iconGravity">start</item>
+    </style>
+
+    <!-- Стиль блока кнопок экрана "Настроек" activity_settings.xml -->
+    <style name="settingsBlockStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/settings_margin</item>
+        <item name="android:layout_marginStart">@dimen/settings_margin</item>
+        <item name="android:layout_marginEnd">@dimen/settings_margin</item>
+        <item name="android:layout_marginBottom">@dimen/settings_margin</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Стиль кнопки "Очистить" при вводе текста search_settings.xml -->
+    <style name="clearButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">?attr/colorOnSecondary</item>
+        <item name="tint">?attr/colorOnPrimary</item>
+        <item name="android:src">@drawable/ic_text_delete</item>
+    </style>
+
+    <!-- Стиль для вывода примеров шрифтов media_settings.xml -->
+    <style name="fontFamilyTestStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/settings_button_text_size</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+    </style>
+</resources>

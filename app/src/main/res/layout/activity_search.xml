@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/settings_button_height"
+    android:background="?attr/colorOnPrimary"
+    android:orientation="vertical">
+
+    <Button style="@style/returnButtonStyle"
+        android:id="@+id/return_from_search"
         android:text="@string/search"
-        android:textColor="@color/button_text"
-        android:textSize="@dimen/primary_text_size"
-        android:textAlignment="center"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/search_margin"
+        android:layout_marginRight="@dimen/search_margin"
+        android:layout_marginTop="@dimen/search_top_margin"
+        android:layout_marginBottom="@dimen/search_margin"
+        android:orientation="horizontal"
+        tools:context=".SearchActivity">
+
+        <EditText
+            android:id="@+id/inputEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/search"
+            android:maxLength="255"
+            android:maxLines="1"
+            android:inputType="text"
+            android:textColor="?attr/colorOnSecondary"
+            android:textColorHint="?attr/colorOnSecondary"
+            />
+
+        <ImageView style="@style/clearButtonStyle"
+            android:id="@+id/clearIcon"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+</LinearLayout>
