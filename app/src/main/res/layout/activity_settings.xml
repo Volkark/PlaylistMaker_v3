@@ -19,17 +19,16 @@
             android:id="@+id/switch_dark_theme"
             android:text="@string/dark_theme"
             />
-
         <Button style="@style/settingsButtonStyle"
             android:id="@+id/button_share"
             android:text="@string/share"
-            app:icon="@drawable/ic_share"/>
-
+            app:icon="@drawable/ic_share"
+            />
         <Button style="@style/settingsButtonStyle"
             android:id="@+id/button_support"
             android:text="@string/support"
-            app:icon="@drawable/ic_support"/>
-
+            app:icon="@drawable/ic_support"
+            />
         <Button style="@style/settingsButtonStyle"
             android:id="@+id/button_agreement"
             android:text="@string/agreement"

@@ -11,4 +11,5 @@
     <color name="dark_background">#FF1A1B22</color>
     <color name="button_text">#FF1A1B22</color>
     <color name="settings_icon">#FFAEAFB4</color>
+    <color name="search_background">#FFE6E8EB</color>
 </resources>

@@ -27,4 +27,8 @@
     <string name="composition" translatable="false">Композиция</string>
     <string name="artist_and_time" translatable="false">Артист и время</string>
 
+    <string name="net_error" translatable="false">Проблемы со связью\n\nЗагрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="empty_error" translatable="false">Ничего не нашлось</string>
+    <string name="download_message" translatable="false">Подождите. Идёт загрузка треков ...</string>
+
 </resources>

@@ -21,6 +21,26 @@
     <!-- activity_search -->
     <dimen name="search_margin">16dp</dimen>
     <dimen name="search_top_margin">12dp</dimen>
+    <dimen name="search_height">36dp</dimen>
+    <dimen name="loupe_pad">11dp</dimen>
+    <dimen name="error_margin">24dp</dimen>
+    <dimen name="error_margin_top">16dp</dimen>
+    <dimen name="clear_icon_size">36dp</dimen>
+    <dimen name="error_text_size">19sp</dimen>
+    <dimen name="update_button_text_size">14sp</dimen>
+    <dimen name="update_button_height">36dp</dimen>
+    <dimen name="update_button_width">91dp</dimen>
+    <dimen name="update_icon_size">120dp</dimen>
+    <dimen name="update_icon_top_margin">110dp</dimen>
 
-    <dimen name="track_text_size">15sp</dimen>
+    <!-- track_view -->
+    <dimen name="track_text_size">16sp</dimen>
+    <dimen name="artist_text_size">11sp</dimen>
+    <dimen name="track_middle_margin">8dp</dimen>
+    <dimen name="track_start_margin">13dp</dimen>
+    <dimen name="track_end_margin">20dp</dimen>
+    <dimen name="track_cover_radius">2dp</dimen>
+    <dimen name="track_cover_size">45dp</dimen>
+
+
 </resources>

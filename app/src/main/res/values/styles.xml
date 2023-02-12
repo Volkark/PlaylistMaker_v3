@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Цветовая схема для строки поиска -->
+    <style name="SearchColorStyle">
+        <item name="android:background">?attr/editTextColor</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="tint">?attr/colorSecondary</item>
+    </style>
+
     <!-- Стиль заголовка / activity_main.xml -->
     <style name="mainTitleStyle">
         <item name="android:layout_width">wrap_content</item>
@@ -94,16 +101,32 @@
     </style>
 
     <!-- Стиль кнопки "Очистить" при вводе текста search_settings.xml -->
-    <style name="clearButtonStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="searchIconStyle">
+        <item name="android:layout_width">@dimen/clear_icon_size</item>
+        <item name="android:layout_height">@dimen/clear_icon_size</item>
+        <item name="android:padding">12dp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:background">@color/settings_icon</item> <!--?attr/colorOnSecondary-->
-        <item name="tint">?attr/colorOnPrimary</item>
-        <item name="android:src">@drawable/ic_text_delete</item>
+        <item name="android:background">?attr/colorPrimaryVariant</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:tint">?attr/editTextColor</item>
     </style>
 
-    <!-- Стиль для вывода примеров шрифтов media_settings.xml -->
+    <!-- Стиль строки ввода поискового запроса search_settings.xml -->
+    <style name="searchTextInputStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:hint">@string/search</item>
+        <item name="android:textColorHint">@color/settings_icon</item>
+
+        <item name="android:inputType">text</item>
+        <item name="android:background">?attr/colorPrimaryVariant</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="tint">?attr/colorSecondary</item>
+    </style>
+
+    <!-- Стиль для вывода названий треков search_settings.xml, media_settings.xml -->
     <style name="trackTextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
@@ -116,14 +139,38 @@
         <item name="android:fontFamily">@font/ys_display_regular</item>
     </style>
 
-    <!-- Стиль для вывода примеров шрифтов media_settings.xml -->
-    <style name="fontFamilyTestStyle">
+    <!-- Стиль сообщений об ошибках search_settings.xml -->
+    <style name="AccessErrorTextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/settings_button_text_size</item>
+        <item name="android:textSize">@dimen/error_text_size</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:letterSpacing">0.0</item>
-        <item name="android:textColor">?attr/colorOnSecondary</item>
-        <item name="android:textAlignment">textStart</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:layout_marginStart">@dimen/error_margin</item>
+        <item name="android:layout_marginEnd">@dimen/error_margin</item>
+        <item name="android:layout_marginBottom">@dimen/error_margin</item>
+        <item name="android:layout_marginTop">@dimen/error_margin_top</item>
+    </style>
+
+    <style name="updateButtonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_width">@dimen/update_button_width</item>
+        <item name="android:layout_height">@dimen/update_button_height</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:textSize">@dimen/update_button_text_size</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:backgroundTint">?attr/colorSecondaryVariant</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="cornerRadius">54dp</item>
     </style>
 </resources>

@@ -3,14 +3,15 @@
     <style name="Theme.PlaylistMaker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue_background</item>     <!-- Фон "Главного экрана" -->
-        <item name="colorPrimaryVariant">@color/purple_700</item>   <!-- Системный статус-бар -->
+        <item name="colorPrimaryVariant">@color/search_background</item>
         <item name="colorOnPrimary">@color/white</item>             <!-- Фон экрана "Настроек" -->
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/settings_icon</item>     <!-- Иконки "Настроек" -->
         <item name="colorSecondaryVariant">@color/button_text</item> <!-- Текст кнопки возврата -->
         <item name="colorOnSecondary">@color/black</item>           <!-- Текст экрана "Настроек" -->
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/purple_700</item>  <!-- Системный статус-бар -->
         <!-- Customize your theme here. -->
+        <item name="android:editTextColor">@color/settings_icon</item>
     </style>
 </resources>
