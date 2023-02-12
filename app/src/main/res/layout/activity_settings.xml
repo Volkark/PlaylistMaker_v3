@@ -33,6 +33,6 @@
         <Button style="@style/settingsButtonStyle"
             android:id="@+id/button_agreement"
             android:text="@string/agreement"
-            app:icon="@drawable/ic_agreement"/>
+            app:icon="@drawable/ic_reveal"/>
     </LinearLayout>
 </LinearLayout>

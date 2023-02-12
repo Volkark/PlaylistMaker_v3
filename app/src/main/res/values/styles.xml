@@ -98,9 +98,22 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:background">?attr/colorOnSecondary</item>
+        <item name="android:background">@color/settings_icon</item> <!--?attr/colorOnSecondary-->
         <item name="tint">?attr/colorOnPrimary</item>
         <item name="android:src">@drawable/ic_text_delete</item>
+    </style>
+
+    <!-- Стиль для вывода примеров шрифтов media_settings.xml -->
+    <style name="trackTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginStart">@dimen/settings_margin</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textSize">@dimen/track_text_size</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
     </style>
 
     <!-- Стиль для вывода примеров шрифтов media_settings.xml -->
@@ -108,9 +121,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/settings_button_text_size</item>
+        <item name="android:letterSpacing">0.0</item>
         <item name="android:textColor">?attr/colorOnSecondary</item>
         <item name="android:textAlignment">textStart</item>
-        <item name="android:letterSpacing">0.0</item>
         <item name="android:fontFamily">@font/ys_display_medium</item>
     </style>
 </resources>

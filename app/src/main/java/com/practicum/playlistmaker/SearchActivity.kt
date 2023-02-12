@@ -1,7 +1,5 @@
 package com.practicum.playlistmaker
 
-import android.content.Context
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -9,8 +7,11 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class SearchActivity : AppCompatActivity() {
+
     companion object {
         const val SEARCH_STRING = "SEARCH_STRING"
     }
@@ -38,7 +39,7 @@ class SearchActivity : AppCompatActivity() {
 
         val inputEditText = findViewById<EditText>(R.id.inputEditText)
         // Установка фокуса на строку ввода поискового запроса
-        inputEditText.requestFocus()
+        // inputEditText.requestFocus()
         // Восстановление строки ввода поискового запроса
         inputEditText.setText(searchText)
 
@@ -67,5 +68,10 @@ class SearchActivity : AppCompatActivity() {
             }
         }
         inputEditText.addTextChangedListener(searchTextWatcher)
+
+        // Вывод списка RecyclerView с Mock-данными, загруженными статичным методом класса Track
+        val recycler = findViewById<RecyclerView>(R.id.tracksListSearch)
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = TrackAdapter(Track.loadMockTrackList() )
     }
 }

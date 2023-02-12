@@ -22,4 +22,9 @@
     <!-- activity_search -->
     <string name="input_hint" translatable="false">Поиск</string>
 
+    <string name="fonts" translatable="false">Шрифты</string>
+
+    <string name="composition" translatable="false">Композиция</string>
+    <string name="artist_and_time" translatable="false">Артист и время</string>
+
 </resources>
