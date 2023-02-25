@@ -19,8 +19,8 @@ class MediaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_media)
 
         // Нажатие кнопки <Назад> экрана <Медиатека> для перехода на главный экран
-        val return_from_settings = findViewById<Button>(R.id.return_from_media)
-        return_from_settings.setOnClickListener { finish() }
+        val returnFromMedia = findViewById<Button>(R.id.return_from_media)
+        returnFromMedia.setOnClickListener { finish() }
 
         //Вывод укрупненной Mock-обложки одного из треков
         val image = findViewById<ImageView>(R.id.image_inet)
@@ -32,8 +32,8 @@ class MediaActivity : AppCompatActivity() {
             .into(image)
 
         // Вывод списка RecyclerView с Mock-данными, загруженными статичным методом класса Track
-        val recycler = findViewById<RecyclerView>(R.id.tracksList)
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = TrackAdapter(Track.loadMockTrackList())
+        //val recycler = findViewById<RecyclerView>(R.id.tracksList)
+        //recycler.layoutManager = LinearLayoutManager(this)
+        // recycler.adapter = TrackAdapter(Track.loadMockTrackList())
     }
 }
