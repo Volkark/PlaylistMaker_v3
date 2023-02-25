@@ -15,7 +15,8 @@
     <LinearLayout style="@style/settingsBlockStyle"
         android:layout_marginTop="40dp">
 
-        <Switch style="@style/settingsButtonStyle"
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            style="@style/settingsButtonStyle"
             android:id="@+id/switch_dark_theme"
             android:text="@string/dark_theme"
             />

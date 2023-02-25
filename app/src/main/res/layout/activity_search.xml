@@ -16,8 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/search_height"
-        android:layout_marginLeft="@dimen/search_margin"
-        android:layout_marginRight="@dimen/search_margin"
+        android:layout_marginHorizontal="@dimen/search_margin"
         android:layout_marginTop="@dimen/search_top_margin"
         android:layout_marginBottom="@dimen/search_margin"
         android:orientation="horizontal"
@@ -48,7 +47,7 @@
             android:src="@drawable/ic_clear_text"
             android:visibility="gone"
             android:background="@drawable/shape_rounded_corners"
-            />2
+            />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -57,31 +56,78 @@
         android:layout_height="match_parent"
         android:padding = "@dimen/settings_margin"
         android:visibility="gone"
+        android:scrollbars="vertical"
         />
 
-    <LinearLayout
-        android:id="@+id/layout_on_error"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorOnPrimary"
-        android:orientation="vertical"
-        android:visibility="gone">
-        <ImageView
-            android:id="@+id/image_on_error"
-            android:layout_width="@dimen/update_icon_size"
-            android:layout_height="@dimen/update_icon_size"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/update_icon_top_margin"
-            android:src="@drawable/ic_download_light"
-            />
-        <TextView style="@style/AccessErrorTextStyle"
-            android:id="@+id/text_on_error"
-            android:text="@string/download_message"
-            />
-        <Button style="@style/updateButtonStyle"
-            android:id="@+id/button_update"
-            android:text="Обновить"
-            />
-    </LinearLayout>
+        >
+        <LinearLayout
+            android:id="@+id/layout_on_error"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorOnPrimary"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            tools:ignore="MissingConstraints">
+            <ImageView style = "@style/AccessErrorImageStyle"
+                android:id="@+id/image_download"
+                android:src="?attr/ic_download"
+                android:visibility="visible"
+                />
+            <ImageView style = "@style/AccessErrorImageStyle"
+                android:id="@+id/image_empty_error"
+                android:src="?attr/ic_empty_error"
+                />
+            <ImageView style = "@style/AccessErrorImageStyle"
+                android:id="@+id/image_link_error"
+                android:src="?attr/ic_link_error"
+                />
+            <TextView style="@style/AccessErrorTextStyle"
+                android:id="@+id/text_on_error"
+                android:text="@string/download_message"
+                android:minHeight="50dp"
+                />
+            <Button style="@style/updateButtonStyle"
+                android:id="@+id/button_update"
+                android:text="@string/update_button"
+                />
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layout_on_history"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorOnPrimary"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1">
+            <TextView style="@style/HistoryTitleStyle"
+                android:text="@string/histoty_title"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/history_list"
+                android:padding = "@dimen/settings_margin"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <Button style="@style/updateButtonStyle"
+                android:layout_width="148dp"
+                android:id="@+id/button_clear_history"
+                android:text="@string/clear_history"
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
+

@@ -7,11 +7,16 @@
         <item name="colorOnPrimary">@color/white</item>             <!-- Фон экрана "Настроек" -->
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/settings_icon</item>     <!-- Иконки "Настроек" -->
-        <item name="colorSecondaryVariant">@color/button_text</item> <!-- Текст кнопки возврата -->
+        <item name="colorSecondaryVariant">@color/button_text</item> <!-- Текст кнопки возврата, цвет нот в плейсхолдерах -->
         <item name="colorOnSecondary">@color/black</item>           <!-- Текст экрана "Настроек" -->
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/purple_700</item>  <!-- Системный статус-бар -->
         <!-- Customize your theme here. -->
         <item name="android:editTextColor">@color/settings_icon</item>
+
+        <!-- Пользовательские настройки для светлой темы-->
+        <item name="ic_download">@drawable/ic_download_light</item>
+        <item name="ic_empty_error">@drawable/ic_empty_error_light</item>
+        <item name="ic_link_error">@drawable/ic_link_error_light</item>
     </style>
 </resources>

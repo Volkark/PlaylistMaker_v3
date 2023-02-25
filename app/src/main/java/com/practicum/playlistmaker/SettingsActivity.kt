@@ -8,6 +8,8 @@ import android.widget.ImageButton
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.gson.Gson
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,15 +17,15 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
 
         // Обработка нажатия кнопки <Назад> экрана <Настройки> для возврата на главный экран
-        val return_from_settings = findViewById<Button>(R.id.return_from_settings)
-        return_from_settings.setOnClickListener { finish() }
+        val returnFromSettings = findViewById<Button>(R.id.return_from_settings)
+        returnFromSettings.setOnClickListener { finish() }
 
         // Установка переключателя <Темная тема> в правильное положение
-        val switch_night = findViewById<Switch>(R.id.switch_dark_theme)
-        when (AppCompatDelegate.getDefaultNightMode()) {
-            AppCompatDelegate.MODE_NIGHT_YES -> switch_night.isChecked = true;
-            AppCompatDelegate.MODE_NIGHT_NO -> switch_night.isChecked = false;
-        }
+        val switch_night = findViewById<SwitchMaterial>(R.id.switch_dark_theme)
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES)
+            switch_night.isChecked = true
+        else
+            switch_night.isChecked = false
         // Обработка нажатия на переключатель <Темная тема>
         switch_night.setOnClickListener {
             setNightLight(switch_night.isChecked)
@@ -48,10 +50,14 @@ class SettingsActivity : AppCompatActivity() {
     // Обработка нажатия на переключатель <Темная тема>
     private fun setNightLight(isChecked: Boolean)
     {
+        val sharedPrefs = getSharedPreferences(PLAY_LIST_MAKER_PREFERENCES, MODE_PRIVATE)
+        var appNightMode = AppCompatDelegate.MODE_NIGHT_NO
         if (isChecked)
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        else
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            appNightMode = AppCompatDelegate.MODE_NIGHT_YES
+        AppCompatDelegate.setDefaultNightMode(appNightMode)
+        sharedPrefs.edit()
+            .putString(APP_NIGHT_MODE, Gson().toJson(appNightMode))
+            .apply()
     }
 
     // Обработка нажатия кнопки <Поделится приложением>

@@ -3,15 +3,21 @@
     <style name="Theme.PlaylistMaker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dark_background</item>     <!-- Фон "Главного экрана" -->
-        <item name="colorPrimaryVariant">@color/white</item>   <!-- Системный статус-бар -->
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/black</item>             <!-- Фон экрана "Настроек" -->
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/white</item>             <!-- Иконки "Настроек" -->
-        <item name="colorSecondaryVariant">@color/white</item>      <!-- Текст кнопки возврата -->
+        <item name="colorSecondaryVariant">@color/white</item>      <!-- Текст кнопки возврата, цвет нот в плейсхолдерах -->
         <item name="colorOnSecondary">@color/white</item>           <!-- Текст экрана "Настроек" -->
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/purple_700</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/purple_700</item>  <!-- Системный статус-бар -->
         <!-- Customize your theme here. -->
         <item name="android:editTextColor">@color/black</item>
+
+        <!-- Пользовательские настройки для тёмной темы-->
+        <item name="ic_download">@drawable/ic_download_dark</item>
+        <item name="ic_empty_error">@drawable/ic_empty_error_dark</item>
+        <item name="ic_link_error">@drawable/ic_link_error_dark</item>
     </style>
+
 </resources>

@@ -33,6 +33,8 @@
     <dimen name="update_icon_size">120dp</dimen>
     <dimen name="update_icon_top_margin">110dp</dimen>
 
+    <dimen name="histoty_title_text_size">19sp</dimen>
+
     <!-- track_view -->
     <dimen name="track_text_size">16sp</dimen>
     <dimen name="artist_text_size">11sp</dimen>
