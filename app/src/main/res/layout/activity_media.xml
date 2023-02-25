@@ -11,7 +11,6 @@
         android:id="@+id/return_from_media"
         android:text="@string/media"
         />
-
     <LinearLayout style="@style/settingsBlockStyle"
         android:layout_marginStart="@dimen/left_button_margin"
         android:layout_marginEnd="@dimen/right_button_margin"
@@ -20,13 +19,12 @@
         <ImageView
             android:id="@+id/image_inet"
             android:layout_width="100dp"
-            android:layout_height="100dp"/>
-
+            android:layout_height="100dp"
+            />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tracksList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
+            android:layout_height="match_parent"
+            />
     </LinearLayout>
-
 </LinearLayout>

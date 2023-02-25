@@ -12,20 +12,17 @@
         android:text="@string/app_name"
         android:textColor="@color/white"
         />
-
     <Button style="@style/mainButtonStyle"
         android:layout_marginTop="40dp"
         android:id="@+id/button_search"
         android:text="@string/search"
         app:icon="@drawable/ic_search"
         />
-
     <Button style="@style/mainButtonStyle"
         android:id="@+id/button_media"
         android:text="@string/media"
         app:icon="@drawable/ic_media"
         />
-
     <Button style="@style/mainButtonStyle"
         android:id="@+id/button_settings"
         android:text="@string/settings"
