@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button style="@style/returnButtonStyle"
+        android:id="@+id/return_from_player"
+        android:text="@string/audioplayer"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0667"
+         />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9333"
+        />
+
+
+    <ImageView
+        android:id="@+id/artworkUrl512х512"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_placeholder"
+        android:layout_marginTop="@dimen/artwork_margin"
+        android:layout_marginBottom="@dimen/artwork_margin"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintTop_toBottomOf="@id/return_from_player"
+        app:layout_constraintBottom_toTopOf="@+id/track_name_ap"
+        app:layout_constraintDimensionRatio="w,1:1"
+        />
+
+    <TextView style="@style/TrackNameAPStyle"
+        android:id="@+id/track_name_ap"
+        android:text="Название трека"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintVertical_bias="0.52" />
+    />
+
+    <TextView style="@style/ArtistAPStyle"
+        android:id="@+id/artist_ap"
+        android:text="Исполнитель"
+        app:layout_constraintTop_toBottomOf="@id/track_name_ap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintVertical_bias="0.032" />
+    />
+
+    <ImageView
+        android:id="@+id/circle_button_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="?attr/ic_circle_button_play"
+        app:layout_constraintTop_toBottomOf="@id/artist_ap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintVertical_bias="0.1385" />
+
+    <ImageView
+        android:id="@+id/circle_button_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="?attr/ic_circle_button_add"
+        app:layout_constraintTop_toTopOf="@id/circle_button_play"
+        app:layout_constraintBottom_toBottomOf="@id/circle_button_play"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        />
+
+    <ImageView
+        android:id="@+id/circle_button_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="?attr/ic_circle_button_heart"
+        app:layout_constraintTop_toTopOf="@id/circle_button_play"
+        app:layout_constraintBottom_toBottomOf="@id/circle_button_play"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        />
+
+    <TextView style="@style/TimeAPStyle"
+        android:id="@+id/time_ap"
+        android:text="0:00"
+        app:layout_constraintTop_toBottomOf="@id/circle_button_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintVertical_bias="0.0555" />
+    />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_infoline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04444"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_infoline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95556"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom_infoline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98678"
+        />
+
+    <TextView style="@style/InfoAPStyle"
+        android:id="@+id/info1"
+        android:text="Длительность"
+        android:layout_marginTop="21dp"
+        app:layout_constraintStart_toStartOf="@id/start_infoline"
+        app:layout_constraintTop_toBottomOf="@id/time_ap"
+        app:layout_constraintBottom_toTopOf="@id/info2"
+        app:layout_constraintVertical_chainStyle="spread"
+        />
+    <TextView style="@style/InfoAPStyle"
+        android:id="@+id/info2"
+        android:text="Альбом"
+        app:layout_constraintStart_toStartOf="@id/start_infoline"
+        app:layout_constraintTop_toBottomOf="@id/info1"
+        app:layout_constraintBottom_toTopOf="@id/info3"
+        app:layout_constraintVertical_chainStyle="spread"
+        />
+    <TextView style="@style/InfoAPStyle"
+        android:id="@+id/info3"
+        android:text="Год"
+        app:layout_constraintStart_toStartOf="@id/start_infoline"
+        app:layout_constraintTop_toBottomOf="@id/info2"
+        app:layout_constraintBottom_toTopOf="@id/info4"
+        app:layout_constraintVertical_chainStyle="spread"
+        />
+    <TextView style="@style/InfoAPStyle"
+        android:id="@+id/info4"
+        android:text="Жанр"
+        app:layout_constraintStart_toStartOf="@id/start_infoline"
+        app:layout_constraintTop_toBottomOf="@id/info3"
+        app:layout_constraintBottom_toTopOf="@id/info5"
+        app:layout_constraintVertical_chainStyle="spread"
+        />
+    <TextView style="@style/InfoAPStyle"
+        android:id="@+id/info5"
+        android:text="Страна"
+        app:layout_constraintStart_toStartOf="@id/start_infoline"
+        app:layout_constraintTop_toBottomOf="@id/info4"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_infoline"
+        app:layout_constraintVertical_chainStyle="spread"
+        />
+    <TextView style="@style/ContAPStyle"
+        android:id="@+id/cont1"
+        android:text="0:00"
+        app:layout_constraintEnd_toEndOf="@id/end_infoline"
+        app:layout_constraintStart_toEndOf="@id/info1"
+        app:layout_constraintTop_toTopOf="@id/info1"
+        />
+    <TextView style="@style/ContAPStyle"
+        android:id="@+id/cont2"
+        android:text="Неизвестно"
+        app:layout_constraintEnd_toEndOf="@id/end_infoline"
+        app:layout_constraintStart_toEndOf="@id/info2"
+        app:layout_constraintTop_toTopOf="@id/info2"
+        />
+    <TextView style="@style/ContAPStyle"
+        android:id="@+id/cont3"
+        android:text="2000"
+        app:layout_constraintEnd_toEndOf="@id/end_infoline"
+        app:layout_constraintStart_toEndOf="@id/info3"
+        app:layout_constraintTop_toTopOf="@id/info3"
+        />
+    <TextView style="@style/ContAPStyle"
+        android:id="@+id/cont4"
+        android:text="Неизвестно"
+        app:layout_constraintEnd_toEndOf="@id/end_infoline"
+        app:layout_constraintStart_toEndOf="@id/info4"
+        app:layout_constraintTop_toTopOf="@id/info4"
+        />
+    <TextView style="@style/ContAPStyle"
+        android:id="@+id/cont5"
+        android:text="Неизвестно"
+        app:layout_constraintEnd_toEndOf="@id/end_infoline"
+        app:layout_constraintStart_toEndOf="@id/info5"
+        app:layout_constraintTop_toTopOf="@id/info5"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

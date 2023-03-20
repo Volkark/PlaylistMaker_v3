@@ -214,6 +214,79 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
 
+    <!-- Стиль название трека в аудиопреере / activity_player.xml -->
+    <style name="TrackNameAPStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/track_name_ap_text_size</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Стиль имени исполнителя в аудиопреере / activity_player.xml -->
+    <style name="ArtistAPStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/artist_ap_text_size</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Стиль времени трека в аудиопреере / activity_player.xml -->
+    <style name="TimeAPStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/artist_ap_text_size</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Стиль информационных заголовков / activity_player.xml -->
+    <style name="InfoAPStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/info_ap_text_size</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Стиль информационного содержимого / activity_player.xml -->
+    <style name="ContAPStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/info_ap_text_size</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
 </resources>
 
 

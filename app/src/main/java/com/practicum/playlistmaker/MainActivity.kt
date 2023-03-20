@@ -15,7 +15,10 @@ import com.google.gson.reflect.TypeToken
 const val PLAY_LIST_MAKER_PREFERENCES = "play_list_maker_preferences"
 const val APP_NIGHT_MODE = "app_night_mode"
 const val SEARCH_HISTORY = "search_history"
+const val LAST_TRACK = "last_track"
 const val HISTORY_SIZE = 10
+
+var lastTrack : Track? = null
 
 class MainActivity : AppCompatActivity() {
 
