@@ -21,14 +21,16 @@
 
     <!-- activity_search -->
     <string name="input_hint" translatable="false">Поиск</string>
-
     <string name="fonts" translatable="false">Шрифты</string>
-
     <string name="composition" translatable="false">Композиция</string>
-    <string name="artist_and_time" translatable="false">Артист и время</string>
-
+    <string name="artist_name" translatable="false">Артист</string>
+    <string name="track_time" translatable="false">00:00</string>
     <string name="net_error" translatable="false">Проблемы со связью\n\nЗагрузка не удалась. Проверьте подключение к интернету</string>
     <string name="empty_error" translatable="false">Ничего не нашлось</string>
     <string name="download_message" translatable="false">Подождите. Идёт загрузка треков ...</string>
+    <string name="update_button" translatable="false">Обновить</string>
+    <string name="clear_history" translatable="false">Очистить историю</string>
+    <string name="histoty_title" translatable="false">Вы искали</string>
 
+    <string name="i_tune_base_url" translatable="false">https://itunes.apple.com</string>
 </resources>

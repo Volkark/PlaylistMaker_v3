@@ -15,7 +15,7 @@
         <item name="android:textSize">@dimen/primary_text_size</item>
         <item name="android:letterSpacing">0.0</item>
         <item name="android:fontFamily">@font/ys_display_medium</item>
-        <item name="android:textFontWeight">500</item>
+        <!-- <item name="android:textFontWeight">500</item> -->
         <item name="android:layout_marginTop">@dimen/title_top</item>
         <item name="android:layout_marginStart">@dimen/title_start</item>
     </style>
@@ -31,7 +31,7 @@
         <item name="android:letterSpacing">0.0</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:fontFamily">@font/ys_display_medium</item>
-        <item name="android:textFontWeight">500</item>
+        <!-- <item name="android:textFontWeight">500</item> -->
         <item name="android:layout_marginStart">@dimen/left_button_margin</item>
         <item name="android:layout_marginEnd">@dimen/right_button_margin</item>
         <item name="android:layout_marginBottom">@dimen/middle_button_margin</item>
@@ -54,7 +54,7 @@
         <item name="android:letterSpacing">0.0</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:fontFamily">@font/ys_display_regular</item>
-        <item name="android:textFontWeight">400</item>
+        <!-- <item name="android:textFontWeight">400</item> -->
         <item name="android:backgroundTint">?attr/colorOnPrimary</item>
         <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="iconGravity">end</item>
@@ -70,7 +70,7 @@
         <item name="android:letterSpacing">0.0</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:fontFamily">@font/ys_display_medium</item>
-        <item name="android:textFontWeight">500</item>
+        <!-- <item name="android:textFontWeight">500</item> -->
         <item name="android:textColor">?attr/colorSecondaryVariant</item>
         <item name="android:textAlignment">textStart</item>
         <item name="android:backgroundTint">?attr/colorOnPrimary</item>
@@ -137,6 +137,20 @@
         <item name="android:textSize">@dimen/track_text_size</item>
         <item name="android:letterSpacing">0.05</item>
         <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="artistTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:textSize">@dimen/artist_text_size</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <!-- Стиль сообщений об ошибках search_settings.xml -->
@@ -155,6 +169,16 @@
         <item name="android:layout_marginTop">@dimen/error_margin_top</item>
     </style>
 
+    <!-- Стиль картинки над сообщением об ошибках search_settings.xml -->
+    <style name="AccessErrorImageStyle">
+        <item name="android:layout_width">@dimen/update_icon_size</item>
+        <item name="android:layout_height">@dimen/update_icon_size</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <!-- Стиль кнопки "Обновить" при ошибке сети search_settings.xml -->
     <style name="updateButtonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="android:layout_width">@dimen/update_button_width</item>
         <item name="android:layout_height">@dimen/update_button_height</item>
@@ -173,4 +197,23 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="cornerRadius">54dp</item>
     </style>
+
+    <!-- Стиль заголовка страницы истории / activity_search.xml -->
+    <style name="HistoryTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/histoty_title_text_size</item>
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <!-- <item name="android:textFontWeight">500</item> -->
+        <item name="android:textColor">?attr/colorSecondaryVariant</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:backgroundTint">?attr/colorOnPrimary</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
 </resources>
+
+

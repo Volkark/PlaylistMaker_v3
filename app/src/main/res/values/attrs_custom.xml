@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Пользовательские атрибуты -->
+<resources>
+    <declare-styleable name = "customAttrs">
+        <attr name="ic_download"  format="reference" />
+        <attr name="ic_link_error" format="reference" />
+        <attr name="ic_empty_error" format="reference" />
+    </declare-styleable>
+</resources>

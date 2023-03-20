@@ -12,3 +12,6 @@
         android:fillColor="#1A1B22"
         android:fillType="evenOdd"/>
 </vector>
+
+<!-- "#1A1B22" -->
+<!-- "?attr/colorSecondaryVariant" -->

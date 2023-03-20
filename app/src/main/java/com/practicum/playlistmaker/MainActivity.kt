@@ -9,18 +9,35 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
+const val PLAY_LIST_MAKER_PREFERENCES = "play_list_maker_preferences"
+const val APP_NIGHT_MODE = "app_night_mode"
+const val SEARCH_HISTORY = "search_history"
+const val HISTORY_SIZE = 10
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Установка темной (Dark) темы приложения при системной "Темной теме / Ночном режиме",
-        // Установка основной (Base) темы приложения - в ином случае
-        when (resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)) {
-            Configuration.UI_MODE_NIGHT_NO -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            Configuration.UI_MODE_NIGHT_YES -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        // Создание экземпляра Shared Preferences
+        val sharedPrefs = getSharedPreferences(PLAY_LIST_MAKER_PREFERENCES, MODE_PRIVATE)
+        // Сохраненная тема приложения из Shared Preferences
+        val jsonString = sharedPrefs.getString(APP_NIGHT_MODE, "")
+        // Тема приложения по-умолчанию
+        var appNightMode = AppCompatDelegate.MODE_NIGHT_NO
+        // Если тема приложения не сохранена
+        if (jsonString == "") {
+            // Установка темной (Dark) темы приложения при системной "Темной теме / Ночном режиме"
+            if (resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES)
+                appNightMode = AppCompatDelegate.MODE_NIGHT_YES
+            AppCompatDelegate.setDefaultNightMode(appNightMode)
+            }
+        // Если тема приложения сохранена - восстановить тему приложения
+        else {
+            AppCompatDelegate.setDefaultNightMode(Gson().fromJson(jsonString, Int :: class.java))
         }
 
         // Главный экран
