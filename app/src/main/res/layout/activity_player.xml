@@ -27,7 +27,6 @@
         app:layout_constraintGuide_percent="0.9333"
         />
 
-
     <ImageView
         android:id="@+id/artworkUrl512х512"
         android:layout_width="0dp"
@@ -44,7 +43,7 @@
 
     <TextView style="@style/TrackNameAPStyle"
         android:id="@+id/track_name_ap"
-        android:text="Название трека"
+        android:text="@string/composition"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/end_guideline"
@@ -54,7 +53,7 @@
 
     <TextView style="@style/ArtistAPStyle"
         android:id="@+id/artist_ap"
-        android:text="Исполнитель"
+        android:text="@string/artist_name"
         app:layout_constraintTop_toBottomOf="@id/track_name_ap"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/end_guideline"
@@ -129,7 +128,7 @@
 
     <TextView style="@style/InfoAPStyle"
         android:id="@+id/info1"
-        android:text="Длительность"
+        android:text="@string/duration"
         android:layout_marginTop="21dp"
         app:layout_constraintStart_toStartOf="@id/start_infoline"
         app:layout_constraintTop_toBottomOf="@id/time_ap"
@@ -138,7 +137,7 @@
         />
     <TextView style="@style/InfoAPStyle"
         android:id="@+id/info2"
-        android:text="Альбом"
+        android:text="@string/album"
         app:layout_constraintStart_toStartOf="@id/start_infoline"
         app:layout_constraintTop_toBottomOf="@id/info1"
         app:layout_constraintBottom_toTopOf="@id/info3"
@@ -146,7 +145,7 @@
         />
     <TextView style="@style/InfoAPStyle"
         android:id="@+id/info3"
-        android:text="Год"
+        android:text="@string/year"
         app:layout_constraintStart_toStartOf="@id/start_infoline"
         app:layout_constraintTop_toBottomOf="@id/info2"
         app:layout_constraintBottom_toTopOf="@id/info4"
@@ -154,7 +153,7 @@
         />
     <TextView style="@style/InfoAPStyle"
         android:id="@+id/info4"
-        android:text="Жанр"
+        android:text="@string/genre"
         app:layout_constraintStart_toStartOf="@id/start_infoline"
         app:layout_constraintTop_toBottomOf="@id/info3"
         app:layout_constraintBottom_toTopOf="@id/info5"
@@ -162,7 +161,7 @@
         />
     <TextView style="@style/InfoAPStyle"
         android:id="@+id/info5"
-        android:text="Страна"
+        android:text="@string/country"
         app:layout_constraintStart_toStartOf="@id/start_infoline"
         app:layout_constraintTop_toBottomOf="@id/info4"
         app:layout_constraintBottom_toBottomOf="@+id/bottom_infoline"
@@ -177,7 +176,7 @@
         />
     <TextView style="@style/ContAPStyle"
         android:id="@+id/cont2"
-        android:text="Неизвестно"
+        android:text="@string/unknown"
         app:layout_constraintEnd_toEndOf="@id/end_infoline"
         app:layout_constraintStart_toEndOf="@id/info2"
         app:layout_constraintTop_toTopOf="@id/info2"
@@ -191,14 +190,14 @@
         />
     <TextView style="@style/ContAPStyle"
         android:id="@+id/cont4"
-        android:text="Неизвестно"
+        android:text="@string/unknown"
         app:layout_constraintEnd_toEndOf="@id/end_infoline"
         app:layout_constraintStart_toEndOf="@id/info4"
         app:layout_constraintTop_toTopOf="@id/info4"
         />
     <TextView style="@style/ContAPStyle"
         android:id="@+id/cont5"
-        android:text="Неизвестно"
+        android:text="@string/unknown"
         app:layout_constraintEnd_toEndOf="@id/end_infoline"
         app:layout_constraintStart_toEndOf="@id/info5"
         app:layout_constraintTop_toTopOf="@id/info5"
