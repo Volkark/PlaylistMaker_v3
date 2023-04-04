@@ -33,4 +33,13 @@
     <string name="histoty_title" translatable="false">Вы искали</string>
 
     <string name="i_tune_base_url" translatable="false">https://itunes.apple.com</string>
+
+    <string name="audioplayer" translatable="false">Аудиоплеер</string>
+    <string name="duration" translatable="false">Длительность</string>
+    <string name="album" translatable="false">Альбом</string>
+    <string name="year" translatable="false">Год</string>
+    <string name="genre" translatable="false">Жанр</string>
+    <string name="country" translatable="false">Страна</string>
+    <string name="unknown" translatable="false">Неизвестный</string>
+
 </resources>

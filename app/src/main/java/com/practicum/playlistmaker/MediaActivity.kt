@@ -1,19 +1,15 @@
 package com.practicum.playlistmaker
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class MediaActivity : AppCompatActivity() {
 
-    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_media)
@@ -30,6 +26,11 @@ class MediaActivity : AppCompatActivity() {
             .centerInside()
             .transform(RoundedCorners(10))
             .into(image)
+
+        // image.setOnClickListener {
+        //    val displayIntent = Intent(this, PlayerActivity::class.java)
+        //     startActivity(displayIntent)
+        //}
 
         // Вывод списка RecyclerView с Mock-данными, загруженными статичным методом класса Track
         //val recycler = findViewById<RecyclerView>(R.id.tracksList)
