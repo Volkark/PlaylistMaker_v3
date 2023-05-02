@@ -2,6 +2,8 @@ package com.practicum.playlistmaker
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -18,6 +20,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class SearchActivity : AppCompatActivity() {
@@ -133,6 +138,18 @@ class SearchActivity : AppCompatActivity() {
             .apply()
     }
 
+    private val handler = Handler(Looper.getMainLooper())
+    private val searchDebonce = Runnable {
+        val recycler = findViewById<RecyclerView>(R.id.tracks_list)
+        if (!(searchText.isNullOrEmpty()))
+            getTracks(recycler.adapter as TrackAdapter)
+    }
+
+    private fun resetSearchDebounce() {
+        handler.removeCallbacks(searchDebonce)
+        handler.postDelayed(searchDebonce, 2000L)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -208,6 +225,7 @@ class SearchActivity : AppCompatActivity() {
                     }
                 }
                 searchText = s.toString()                                       // Сохранить строку ввода в переменной
+                resetSearchDebounce()
             }
             override fun afterTextChanged(s: Editable?) {
             }
@@ -333,6 +351,7 @@ class SearchActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.layout_on_history).visibility = View.GONE       // Скрытие истории поиска
         findViewById<RecyclerView>(R.id.tracks_list).visibility = View.GONE             // Скрытие списка треков
         findViewById<ImageView>(R.id.image_download).visibility = downloadView          // Установка выбранной видимости картинки "Заграузка"
+        findViewById<ProgressBar>(R.id.progressBarSearch).visibility = downloadView     // Установка выбранной видимости прогресс-бара загрузки
         findViewById<ImageView>(R.id.image_empty_error).visibility = emptyErrorView     // Установка выбранной видимости картинки "Пусто"
         findViewById<ImageView>(R.id.image_link_error).visibility = linkErrorView       // Установка выбранной видимости картинки "Нет связи"
         findViewById<Button>(R.id.button_update).visibility = buttonView                // Установка выбранной видимости кнопки "Обновить"

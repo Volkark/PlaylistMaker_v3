@@ -19,8 +19,10 @@
         <item name="ic_empty_error">@drawable/ic_empty_error_dark</item>
         <item name="ic_link_error">@drawable/ic_link_error_dark</item>
         <item name="ic_circle_button_play">@drawable/ic_circle_button_play_dark</item>
+        <item name="ic_circle_button_pause">@drawable/ic_circle_button_pause_dark</item>
         <item name="ic_circle_button_add">@drawable/ic_circle_button_add_dark</item>
         <item name="ic_circle_button_heart">@drawable/ic_circle_button_heart_dark</item>
+        <item name="ic_circle_button_heart_selected">@drawable/ic_circle_button_heart_selected_dark</item>
     </style>
 
 </resources>

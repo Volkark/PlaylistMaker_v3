@@ -63,9 +63,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
         <LinearLayout
             android:id="@+id/layout_on_error"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorOnPrimary"
@@ -98,9 +99,23 @@
                 />
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBarSearch"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="30dp"
+            android:indeterminateTint="@color/blue_background"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
+
         <LinearLayout
             android:id="@+id/layout_on_history"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorOnPrimary"

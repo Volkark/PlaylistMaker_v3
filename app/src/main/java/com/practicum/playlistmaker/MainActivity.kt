@@ -46,6 +46,8 @@ class MainActivity : AppCompatActivity() {
         // Главный экран
         setContentView(R.layout.activity_main)
 
+        findViewById<Button>(R.id.return_from_app).setOnClickListener { finish() }
+
         // Реализация нажатия кнопки <Поиск>
         val button_search = findViewById<Button>(R.id.button_search)
         button_search.setOnClickListener {

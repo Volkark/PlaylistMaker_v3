@@ -10,6 +10,7 @@ data class Track (
     val country: String,            // Страна исполнителя
     val trackTimeMillis: Long,      // Продолжительность трека в миллисекндах
     val artworkUrl100: String,      // Ссылка на изображение обложки
+    val previewUrl:String,          // Ссылка на отрывок трека
 ) {
 
     // Static метод для загрузки Mock-данных, заданный через companion object
