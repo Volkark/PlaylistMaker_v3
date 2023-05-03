@@ -29,10 +29,7 @@ class TrackViewHolder(parentView: ViewGroup) : RecyclerView.ViewHolder(
     fun bind(track: Track) {
         trackNameView.setText(track.trackName)
         artistNameView.setText(track.artistName)
-        trackTimeView.setText(
-            String.format("%d:%02d",
-            (track.trackTimeMillis / 60000).toInt(),
-            ((track.trackTimeMillis % 60000) / 1000).toInt()))
+        trackTimeView.setText(Track.trackTimeFormat(track.trackTimeMillis))
         Glide.with(artworkUrl100View.context)
             .load(track.artworkUrl100)
             .placeholder(R.drawable.ic_no_reply)

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.gson.Gson
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         // Главный экран
         setContentView(R.layout.activity_main)
 
-        findViewById<Button>(R.id.return_from_app).setOnClickListener { finish() }
+        findViewById<TextView>(R.id.return_from_app).setOnClickListener { finish() }
 
         // Реализация нажатия кнопки <Поиск>
         val button_search = findViewById<Button>(R.id.button_search)

@@ -316,6 +316,7 @@ class SearchActivity : AppCompatActivity() {
 
      private fun setSearchScreenMode(screenMode : ScreenModes) {
         var downloadView = View.GONE
+        var progressBarView = View.GONE
         var emptyErrorView = View.GONE
         var linkErrorView = View.GONE
         var buttonView = View.GONE
@@ -324,7 +325,8 @@ class SearchActivity : AppCompatActivity() {
         when (screenMode) {
             ScreenModes.SCR_DOWNLOAD -> {
                 findViewById<TextView>(R.id.text_on_error).setText(R.string.download_message)
-                downloadView = View.VISIBLE
+                downloadView = View.INVISIBLE
+                progressBarView = View.VISIBLE
             }
             ScreenModes.SCR_EMPTY -> {
                 findViewById<TextView>(R.id.text_on_error).setText(R.string.empty_error)
@@ -351,7 +353,7 @@ class SearchActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.layout_on_history).visibility = View.GONE       // Скрытие истории поиска
         findViewById<RecyclerView>(R.id.tracks_list).visibility = View.GONE             // Скрытие списка треков
         findViewById<ImageView>(R.id.image_download).visibility = downloadView          // Установка выбранной видимости картинки "Заграузка"
-        findViewById<ProgressBar>(R.id.progressBarSearch).visibility = downloadView     // Установка выбранной видимости прогресс-бара загрузки
+        findViewById<ProgressBar>(R.id.progressBarSearch).visibility = progressBarView  // Установка выбранной видимости прогресс-бара загрузки
         findViewById<ImageView>(R.id.image_empty_error).visibility = emptyErrorView     // Установка выбранной видимости картинки "Пусто"
         findViewById<ImageView>(R.id.image_link_error).visibility = linkErrorView       // Установка выбранной видимости картинки "Нет связи"
         findViewById<Button>(R.id.button_update).visibility = buttonView                // Установка выбранной видимости кнопки "Обновить"

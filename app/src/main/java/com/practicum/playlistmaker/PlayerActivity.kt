@@ -1,6 +1,5 @@
 package com.practicum.playlistmaker
 
-//import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.media.Image
@@ -30,25 +29,33 @@ class PlayerActivity : AppCompatActivity() {
         PLR_PAUSE,          // Трек остановлен
     }
 
-    private var mediaPlayer = MediaPlayer()
+    // View-элементы Activity, используемые в разных функциях класса (не только в onCreate)
+    private val noReadyHoop by lazy { findViewById<ProgressBar>(R.id.progressBarPlayer) }
+    private val playButton by lazy { findViewById<ImageView>(R.id.circle_button_play) }
+    private val pauseButton by lazy { findViewById<ImageView>(R.id.circle_button_pause) }
+    private val heartButton by lazy { findViewById<ImageView>(R.id.circle_button_heart) }
+    private val selectedHeartButton by lazy { findViewById<ImageView>(R.id.circle_button_heart_selected) }
+
+    private val playTime by lazy { findViewById<TextView>(R.id.playback_time) }
+
+    private val mediaPlayer = MediaPlayer()
     private var playerState : PlayerModes = PlayerModes.PLR_NO_READY
     private var heartState : Boolean = false
 
     private val handler = Handler(Looper.getMainLooper())
-    private val timeApSet = Runnable {
-        val timeAp = findViewById<TextView>(R.id.time_ap)
+    private val playTimeEvent = Runnable {
         val newTime = SimpleDateFormat("mm:ss", Locale.getDefault()).format(mediaPlayer.currentPosition)
-        if (newTime != timeAp.text)
-            timeAp.setText(newTime)
-        setTimeApDebounce()
+        if (newTime != playTime.text)
+            playTime.setText(newTime)
+        setPlayTimeEvent()
     }
 
-    private fun setTimeApDebounce() {
-        handler.postDelayed(timeApSet, 100)
+    private fun setPlayTimeEvent() {
+        handler.postDelayed(playTimeEvent, 100)
     }
 
-    private fun removeTimeApDebounce() {
-        handler.removeCallbacks(timeApSet)
+    private fun removePlayTimeEvent() {
+        handler.removeCallbacks(playTimeEvent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,10 +63,10 @@ class PlayerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_player)
 
         // Нажатие кнопки <Назад> экрана <Аудиоплееер> для перехода на главный экран
-        val returnFromPlayer = findViewById<Button>(R.id.return_from_player)
-        returnFromPlayer.setOnClickListener { finish() }
+        findViewById<Button>(R.id.return_from_player)
+            .setOnClickListener { finish() }
 
-        // View-элементы Activity
+        // View-элементы Activity, используемые только в onCreate
         val trackName = findViewById<TextView>(R.id.track_name_ap)
         val artistName = findViewById<TextView>(R.id.artist_ap)
         val trackTime = findViewById<TextView>(R.id.cont1)
@@ -73,19 +80,16 @@ class PlayerActivity : AppCompatActivity() {
         if (lastTrack != null) {
             trackName.setText(lastTrack!!.trackName)
             artistName.setText(lastTrack!!.artistName)
-            trackTime.setText(
-                String.format("%d:%02d",
-                    (lastTrack!!.trackTimeMillis / 60000).toInt(),
-                    ((lastTrack!!.trackTimeMillis % 60000) / 1000).toInt()))
+            trackTime.setText(Track.trackTimeFormat(lastTrack!!.trackTimeMillis))
             collect.setText(lastTrack!!.collectionName)
             year.setText(lastTrack!!.releaseDate.substring(0,4))
             genre.setText(lastTrack!!.primaryGenreName)
             country.setText(lastTrack!!.country)
 
-            var art : String = lastTrack!!.artworkUrl100
-            if (!art.isNullOrBlank() && art.length >= 14) {
+            val artUrl : String? = lastTrack?.artworkUrl100
+            if (!artUrl.isNullOrBlank() && artUrl.length >= 14) {
                 Glide.with(this)
-                    .load(art.substring(0, art.length - 13) + "512x512bb.jpg")
+                    .load(artUrl.substring(0, artUrl.length - 13) + "512x512bb.jpg")
                     .placeholder(R.drawable.ic_placeholder)
                     .centerInside()
                     .transform(RoundedCorners(artworkUrl.resources.getDimensionPixelSize(R.dimen.placeholder_radius)))
@@ -94,7 +98,7 @@ class PlayerActivity : AppCompatActivity() {
             else { artworkUrl.setImageResource(R.drawable.ic_sync_off)
             }
 
-            val trackUrl : String = lastTrack!!.previewUrl
+            val trackUrl : String? = lastTrack?.previewUrl
             if (!trackUrl.isNullOrBlank() && trackUrl.length >= 10) {
                 preparePlayer(trackUrl)
             }
@@ -111,20 +115,20 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         // переключение кнопок восроизведения и паузы
-        findViewById<ImageView>(R.id.circle_button_play).setOnClickListener {
+        playButton.setOnClickListener {
             startPlayer()
         }
-        findViewById<ImageView>(R.id.circle_button_pause).setOnClickListener {
+        pauseButton.setOnClickListener {
             pausePlayer()
         }
-        findViewById<ImageView>(R.id.circle_button_heart).setOnClickListener {
-            findViewById<ImageView>(R.id.circle_button_heart_selected).visibility = View.VISIBLE
-            findViewById<ImageView>(R.id.circle_button_heart).visibility = View.INVISIBLE
+        heartButton.setOnClickListener {
+            selectedHeartButton.visibility = View.VISIBLE
+            heartButton.visibility = View.INVISIBLE
             heartState = true
         }
-        findViewById<ImageView>(R.id.circle_button_heart_selected).setOnClickListener {
-            findViewById<ImageView>(R.id.circle_button_heart_selected).visibility = View.INVISIBLE
-            findViewById<ImageView>(R.id.circle_button_heart).visibility = View.VISIBLE
+        selectedHeartButton.setOnClickListener {
+            selectedHeartButton.visibility = View.INVISIBLE
+            heartButton.visibility = View.VISIBLE
             heartState = false
         }
     }
@@ -136,7 +140,7 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        removeTimeApDebounce()
+        removePlayTimeEvent()
         mediaPlayer.release()
     }
 
@@ -144,13 +148,14 @@ class PlayerActivity : AppCompatActivity() {
         mediaPlayer.setDataSource(trackUrl)
         mediaPlayer.prepareAsync()
         mediaPlayer.setOnPreparedListener {
-            findViewById<ImageView>(R.id.circle_button_play).visibility = View.VISIBLE
-            findViewById<ProgressBar>(R.id.progressBarPlayer).visibility = View.INVISIBLE
+            noReadyHoop.visibility = View.INVISIBLE
+            pauseButton.visibility = View.INVISIBLE
+            playButton.visibility = View.VISIBLE
             playerState = PlayerModes.PLR_PAUSE
         }
         mediaPlayer.setOnCompletionListener {
             pausePlayer()
-            findViewById<TextView>(R.id.time_ap).setText("0:00")
+            playTime.setText("0:00")
             // Если сердце выбрано, то запустить снова на проигрывание
             if (heartState)
                 startPlayer()
@@ -159,21 +164,21 @@ class PlayerActivity : AppCompatActivity() {
 
     private fun startPlayer() {
         if (playerState == PlayerModes.PLR_PAUSE) {
-            findViewById<ImageView>(R.id.circle_button_play).visibility = View.INVISIBLE
-            findViewById<ImageView>(R.id.circle_button_pause).visibility = View.VISIBLE
+            playButton.visibility = View.INVISIBLE
+            pauseButton.visibility = View.VISIBLE
             mediaPlayer.start()
             playerState = PlayerModes.PLR_PLAYING
-            setTimeApDebounce()
+            setPlayTimeEvent()
         }
     }
 
     private fun pausePlayer() {
         if (playerState == PlayerModes.PLR_PLAYING) {
-            findViewById<ImageView>(R.id.circle_button_play).visibility = View.VISIBLE
-            findViewById<ImageView>(R.id.circle_button_pause).visibility = View.INVISIBLE
+            pauseButton.visibility = View.INVISIBLE
+            playButton.visibility = View.VISIBLE
             mediaPlayer.pause()
             playerState = PlayerModes.PLR_PAUSE
-            removeTimeApDebounce()
+            removePlayTimeEvent()
         }
     }
 

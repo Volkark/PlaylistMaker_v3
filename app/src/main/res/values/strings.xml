@@ -27,7 +27,7 @@
     <string name="track_time" translatable="false">00:00</string>
     <string name="net_error" translatable="false">Проблемы со связью\n\nЗагрузка не удалась. Проверьте подключение к интернету</string>
     <string name="empty_error" translatable="false">Ничего не нашлось</string>
-    <string name="download_message" translatable="false">Подождите. Идёт загрузка треков ...</string>
+    <string name="download_message" translatable="false">Подождите. Идёт поиск треков ...</string>
     <string name="update_button" translatable="false">Обновить</string>
     <string name="clear_history" translatable="false">Очистить историю</string>
     <string name="histoty_title" translatable="false">Вы искали</string>

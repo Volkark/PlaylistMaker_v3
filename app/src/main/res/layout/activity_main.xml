@@ -8,14 +8,11 @@
     android:background="?attr/colorPrimary"
     android:orientation="vertical">
 
-    <Button style="@style/returnButtonStyle"
+    <TextView style="@style/mainTitleStyle"
         android:id="@+id/return_from_app"
         android:text="@string/app_name"
         android:textColor="@color/white"
-        android:background="?attr/colorPrimary"
-        app:iconTint = "@color/white"
         />
-
     <Button style="@style/mainButtonStyle"
         android:layout_marginTop="40dp"
         android:id="@+id/button_search"

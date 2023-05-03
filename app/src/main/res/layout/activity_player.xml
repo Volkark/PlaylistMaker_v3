@@ -132,7 +132,7 @@
         />
 
     <TextView style="@style/TimeAPStyle"
-        android:id="@+id/time_ap"
+        android:id="@+id/playback_time"
         android:text="0:00"
         app:layout_constraintTop_toBottomOf="@id/circle_button_play"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -170,7 +170,7 @@
         android:text="@string/duration"
         android:layout_marginTop="21dp"
         app:layout_constraintStart_toStartOf="@id/start_infoline"
-        app:layout_constraintTop_toBottomOf="@id/time_ap"
+        app:layout_constraintTop_toBottomOf="@id/playback_time"
         app:layout_constraintBottom_toTopOf="@id/info2"
         app:layout_constraintVertical_chainStyle="spread"
         />
