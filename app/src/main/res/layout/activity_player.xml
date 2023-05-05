@@ -61,11 +61,38 @@
         app:layout_constraintVertical_bias="0.032" />
     />
 
+    <!-- При запуске экрана аудиоплеера вместо кнопки воспроизведение/пауза -->
+    <!-- до готовности трека к воспроизведению отображается прогресс-бар    -->
+
+    <ProgressBar android:id="@+id/progressBarPlayer"
+        android:visibility="visible"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:indeterminateTint="?attr/colorOnSecondary"
+        app:layout_constraintTop_toBottomOf="@id/artist_ap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintVertical_bias="0.1385" />
+
     <ImageView
         android:id="@+id/circle_button_play"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="?attr/ic_circle_button_play"
+        app:layout_constraintTop_toBottomOf="@id/artist_ap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintVertical_bias="0.1385" />
+
+    <ImageView
+        android:id="@+id/circle_button_pause"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="?attr/ic_circle_button_pause"
         app:layout_constraintTop_toBottomOf="@id/artist_ap"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/end_guideline"
@@ -84,6 +111,7 @@
 
     <ImageView
         android:id="@+id/circle_button_heart"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="?attr/ic_circle_button_heart"
@@ -92,8 +120,19 @@
         app:layout_constraintEnd_toEndOf="@id/end_guideline"
         />
 
+    <ImageView
+        android:id="@+id/circle_button_heart_selected"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="?attr/ic_circle_button_heart_selected"
+        app:layout_constraintTop_toTopOf="@id/circle_button_play"
+        app:layout_constraintBottom_toBottomOf="@id/circle_button_play"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        />
+
     <TextView style="@style/TimeAPStyle"
-        android:id="@+id/time_ap"
+        android:id="@+id/playback_time"
         android:text="0:00"
         app:layout_constraintTop_toBottomOf="@id/circle_button_play"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,7 +170,7 @@
         android:text="@string/duration"
         android:layout_marginTop="21dp"
         app:layout_constraintStart_toStartOf="@id/start_infoline"
-        app:layout_constraintTop_toBottomOf="@id/time_ap"
+        app:layout_constraintTop_toBottomOf="@id/playback_time"
         app:layout_constraintBottom_toTopOf="@id/info2"
         app:layout_constraintVertical_chainStyle="spread"
         />

@@ -9,6 +9,7 @@
     android:orientation="vertical">
 
     <TextView style="@style/mainTitleStyle"
+        android:id="@+id/return_from_app"
         android:text="@string/app_name"
         android:textColor="@color/white"
         />
