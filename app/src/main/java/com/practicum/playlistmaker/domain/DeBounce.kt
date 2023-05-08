@@ -1,8 +1,9 @@
-package com.practicum.playlistmaker
+package com.practicum.playlistmaker.domain
 
 import android.os.Handler
 import android.os.Looper
 
+// Класс для предотвращения "дребезга" при кликах на объекты
 class DeBounce() {
     private var isSelectAllowed = true
     private val handler = Handler(Looper.getMainLooper())

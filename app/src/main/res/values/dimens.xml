@@ -50,6 +50,7 @@
     <dimen name="info_ap_text_size">13sp</dimen>
     <dimen name="placeholder_radius">4dp</dimen>
     <dimen name="artwork_margin">24dp</dimen>
+    <dimen name="artwork_margin_top">16dp</dimen>
 </resources>
 
 
