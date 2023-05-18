@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.presentation
+package com.practicum.playlistmaker.ui.player
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.data.TrackCover
-import com.practicum.playlistmaker.domain.Track
+import com.practicum.playlistmaker.domain.models.Track
+import com.practicum.playlistmaker.ui.lastTrack
 import java.text.SimpleDateFormat
 import java.util.*
 

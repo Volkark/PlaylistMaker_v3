@@ -20,7 +20,7 @@
         android:layout_marginTop="@dimen/search_top_margin"
         android:layout_marginBottom="@dimen/search_margin"
         android:orientation="horizontal"
-        tools:context=".presentation.SearchActivity"
+        tools:context=".ui.tracks.SearchActivity"
         android:background="@drawable/shape_rounded_corners"
         >
 
