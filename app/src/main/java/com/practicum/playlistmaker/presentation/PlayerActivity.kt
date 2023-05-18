@@ -1,8 +1,8 @@
-package com.practicum.playlistmaker
+package com.practicum.playlistmaker.presentation
 
 import android.content.Context
 import android.content.Intent
-import android.media.Image
+import android.content.res.Configuration
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,10 +14,9 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.practicum.playlistmaker.R
+import com.practicum.playlistmaker.data.TrackCover
+import com.practicum.playlistmaker.domain.Track
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -60,7 +59,11 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_player)
+        // Использование разных макетов для портретной и ландшафтной ориентаций дисплея
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+            setContentView(R.layout.activity_player_land)
+        else
+            setContentView(R.layout.activity_player)
 
         // Нажатие кнопки <Назад> экрана <Аудиоплееер> для перехода на главный экран
         findViewById<Button>(R.id.return_from_player)
@@ -74,7 +77,7 @@ class PlayerActivity : AppCompatActivity() {
         val year = findViewById<TextView>(R.id.cont3)
         val genre = findViewById<TextView>(R.id.cont4)
         val country = findViewById<TextView>(R.id.cont5)
-        val artworkUrl =  findViewById<ImageView>(R.id.artworkUrl512х512)
+        val artwork =  findViewById<ImageView>(R.id.artworkUrl512х512)
 
         // lastTrack - глобальная переменная для передачи выбранного трека в Activity аудиоплеера
         if (lastTrack != null) {
@@ -85,34 +88,14 @@ class PlayerActivity : AppCompatActivity() {
             year.setText(lastTrack!!.releaseDate.substring(0,4))
             genre.setText(lastTrack!!.primaryGenreName)
             country.setText(lastTrack!!.country)
-
-            val artUrl : String? = lastTrack?.artworkUrl100
-            if (!artUrl.isNullOrBlank() && artUrl.length >= 14) {
-                Glide.with(this)
-                    .load(artUrl.substring(0, artUrl.length - 13) + "512x512bb.jpg")
-                    .placeholder(R.drawable.ic_placeholder)
-                    .centerInside()
-                    .transform(RoundedCorners(artworkUrl.resources.getDimensionPixelSize(R.dimen.placeholder_radius)))
-                    .into(artworkUrl)
-            }
-            else { artworkUrl.setImageResource(R.drawable.ic_sync_off)
-            }
+            TrackCover.set(artwork, lastTrack!!.artworkUrl100)      // Установка картинки трека
 
             val trackUrl : String? = lastTrack?.previewUrl
             if (!trackUrl.isNullOrBlank() && trackUrl.length >= 10) {
                 preparePlayer(trackUrl)
             }
         }
-        else {
-            trackName.setText("")
-            artistName.setText("")
-            trackTime.setText("0:00")
-            collect.setText("")
-            year.setText("")
-            genre.setText("")
-            country.setText("")
-            artworkUrl.setImageResource(R.drawable.ic_sync_off)
-        }
+        else { finish() }
 
         // переключение кнопок восроизведения и паузы
         playButton.setOnClickListener {
@@ -135,7 +118,8 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        pausePlayer()
+        if (!heartState)
+            pausePlayer()
     }
 
     override fun onDestroy() {

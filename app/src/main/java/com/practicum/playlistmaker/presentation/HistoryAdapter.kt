@@ -1,14 +1,9 @@
-package com.practicum.playlistmaker
+package com.practicum.playlistmaker.presentation
 
-import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
-import com.google.gson.Gson
+import com.practicum.playlistmaker.domain.DeBounce
+import com.practicum.playlistmaker.domain.Track
 
 class HistoryAdapter(
     internal val history: ArrayList<Track>

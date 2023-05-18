@@ -37,23 +37,23 @@
         android:layout_marginStart="@dimen/artwork_margin"
         android:layout_marginEnd="@dimen/artwork_margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/center_vertical_line"
         app:layout_constraintTop_toBottomOf="@id/return_from_player"
-        app:layout_constraintBottom_toBottomOf="@id/center_horizontal_line"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="w,1:1"
         />
 
     <TextView style="@style/TrackNameAPStyle"
         android:id="@+id/track_name_ap"
         android:text="@string/composition"
-        android:layout_marginHorizontal="8dp"
-        app:layout_constraintTop_toTopOf="@id/center_horizontal_line"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/end_infoline"
         app:layout_constraintStart_toStartOf="@id/start_infoline"
         app:layout_constraintVertical_bias="0.0"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
         />
-    />
 
     <TextView style="@style/ArtistAPStyle"
         android:id="@+id/artist_ap"
@@ -150,7 +150,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintGuide_begin="0dp"
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -162,19 +163,12 @@
         />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/top_infoline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="16dp"
-        />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bottom_infoline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="16dp" />
+        app:layout_constraintGuide_end="16dp"
+        />
 
     <TextView style="@style/InfoAPStyle"
         android:id="@+id/info1"

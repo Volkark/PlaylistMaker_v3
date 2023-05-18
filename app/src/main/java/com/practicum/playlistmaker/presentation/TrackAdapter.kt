@@ -1,17 +1,10 @@
-package com.practicum.playlistmaker
+package com.practicum.playlistmaker.presentation
 
-import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import android.view.ViewGroup
-import android.view.animation.BounceInterpolator
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import java.text.SimpleDateFormat
-import java.util.*
+import com.practicum.playlistmaker.data.TracksStore
+import com.practicum.playlistmaker.domain.DeBounce
+import com.practicum.playlistmaker.domain.Track
 import kotlin.collections.ArrayList
 
 class TrackAdapter(
@@ -32,6 +25,9 @@ class TrackAdapter(
             if (history.contains(track)) history.remove(track)
             else if (history.size == HISTORY_SIZE) history.removeAt(HISTORY_SIZE - 1)
             history.add(0, track)
+            // Сохранение истории поиска в Shared Prefernces
+            TracksStore(holder.itemView.context, SEARCH_HISTORY)
+                .save(history)
 
             // Запуск выбранного трека в аудиоплеере не чаще 1 раза в 1000 мс
             if (deBounce.allowed())

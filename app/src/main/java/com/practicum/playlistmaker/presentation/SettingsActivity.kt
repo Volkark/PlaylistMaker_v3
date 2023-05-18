@@ -1,15 +1,15 @@
-package com.practicum.playlistmaker
+package com.practicum.playlistmaker.presentation
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.gson.Gson
+import com.practicum.playlistmaker.R
+import com.practicum.playlistmaker.data.NightModeStore
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,14 +50,16 @@ class SettingsActivity : AppCompatActivity() {
     // Обработка нажатия на переключатель <Темная тема>
     private fun setNightLight(isChecked: Boolean)
     {
-        val sharedPrefs = getSharedPreferences(PLAY_LIST_MAKER_PREFERENCES, MODE_PRIVATE)
         var appNightMode = AppCompatDelegate.MODE_NIGHT_NO
         if (isChecked)
             appNightMode = AppCompatDelegate.MODE_NIGHT_YES
         AppCompatDelegate.setDefaultNightMode(appNightMode)
+        // Сохранить выбранную тему в SharedPreferences
+        NightModeStore(this, APP_NIGHT_MODE).save(appNightMode)
+/*        val sharedPrefs = getSharedPreferences(PLAY_LIST_MAKER_PREFERENCES, MODE_PRIVATE)
         sharedPrefs.edit()
             .putString(APP_NIGHT_MODE, Gson().toJson(appNightMode))
-            .apply()
+            .apply() */
     }
 
     // Обработка нажатия кнопки <Поделится приложением>
