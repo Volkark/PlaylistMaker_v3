@@ -1,14 +1,17 @@
-package com.practicum.playlistmaker.presentation
+package com.practicum.playlistmaker.ui.tracks
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlistmaker.data.TracksStore
 import com.practicum.playlistmaker.domain.DeBounce
-import com.practicum.playlistmaker.domain.Track
+import com.practicum.playlistmaker.domain.models.Track
+import com.practicum.playlistmaker.ui.HISTORY_SIZE
+import com.practicum.playlistmaker.ui.player.PlayerActivity
+import com.practicum.playlistmaker.ui.SEARCH_HISTORY
 import kotlin.collections.ArrayList
 
 class TrackAdapter(
-    internal val tracks: ArrayList<Track>,
+    internal var tracks: ArrayList<Track>,
     internal val history: ArrayList<Track>
 ) : RecyclerView.Adapter<TrackViewHolder> () {
 

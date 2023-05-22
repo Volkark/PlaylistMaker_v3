@@ -6,11 +6,11 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.practicum.playlistmaker.domain.Track
+import com.practicum.playlistmaker.domain.models.Track
 
 const val PLAY_LIST_MAKER_PREFERENCES = "play_list_maker_preferences"
 
-abstract class unsafeHardStorage<T>(final val context: Context, val cellName: String) {
+abstract class UnsafeHardStorage<T>(final val context: Context, val cellName: String) {
     var value: T? = null
 
     open fun wasSaved(): Boolean {
@@ -38,14 +38,14 @@ abstract class unsafeHardStorage<T>(final val context: Context, val cellName: St
     }
 }
 
-class NightModeStore(context: Context, cellName: String) : unsafeHardStorage<Int>(context, cellName) {
+class NightModeStore(context: Context, cellName: String) : UnsafeHardStorage<Int>(context, cellName) {
 }
 
 // Для класса ArrayList<Track> функция абстактного класса wasSaved(), подставляя вместо T выражение ArrayList<Track>
 // преобразет сохранненную json-строку неправильно, при прямом подставлении ArrayList<Track> в переопределенной wasSaved()
 // json-строка преобразуется правильно
 
-class TracksStore(context: Context, cellName: String) : unsafeHardStorage<ArrayList<Track>>(context, cellName) {
+class TracksStore(context: Context, cellName: String) : UnsafeHardStorage<ArrayList<Track>>(context, cellName) {
     override fun wasSaved(): Boolean {
         val jsonString =
             context.getSharedPreferences(PLAY_LIST_MAKER_PREFERENCES, MODE_PRIVATE)

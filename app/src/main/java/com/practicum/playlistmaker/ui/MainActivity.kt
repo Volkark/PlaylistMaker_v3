@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.presentation
+package com.practicum.playlistmaker.ui
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -8,11 +8,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
-import com.google.gson.Gson
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.domain.Track
+import com.practicum.playlistmaker.domain.models.Track
 import com.practicum.playlistmaker.data.NightModeStore
-import kotlin.Int as Int
+import com.practicum.playlistmaker.ui.MediaActivity
+import com.practicum.playlistmaker.ui.SettingsActivity
+import com.practicum.playlistmaker.ui.tracks.SearchActivity
 
 const val APP_NIGHT_MODE = "app_night_mode"
 const val SEARCH_HISTORY = "search_history"

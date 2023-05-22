@@ -1,4 +1,4 @@
-package com.practicum.playlistmaker.presentation
+package com.practicum.playlistmaker.ui.tracks
 
 import android.os.Bundle
 import android.os.Handler
@@ -16,8 +16,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.data.*
-import com.practicum.playlistmaker.domain.TracksResponse
-import com.practicum.playlistmaker.domain.Track
+import com.practicum.playlistmaker.data.dto.TracksResponse
+import com.practicum.playlistmaker.domain.models.Track
+import com.practicum.playlistmaker.ui.SEARCH_HISTORY
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -150,19 +151,6 @@ class SearchActivity : AppCompatActivity() {
             historyTracks.clear()
             historyTracks.addAll(tracksStore.getStored()!!)
         }
-
-/*
-        val sharedPrefs = this.getSharedPreferences(PLAY_LIST_MAKER_PREFERENCES, MODE_PRIVATE)
-        val jsonString = sharedPrefs.getString(SEARCH_HISTORY, "")
-        if (jsonString != "") {
-            //historyTracks.clear()
-            val tracks = Gson().fromJson<ArrayList<Track>>(
-                jsonString,
-                object : TypeToken<ArrayList<Track>>() {}.type)
-            if (tracks != null)
-                historyTracks.addAll(tracks)
-        }
-*/
 
         // Инициализация RecyclerView для просмотра результато поиска
         recyclerTracks.layoutManager = LinearLayoutManager(this)

@@ -1,9 +1,11 @@
-package com.practicum.playlistmaker.presentation
+package com.practicum.playlistmaker.ui.tracks
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlistmaker.domain.DeBounce
-import com.practicum.playlistmaker.domain.Track
+import com.practicum.playlistmaker.domain.models.Track
+import com.practicum.playlistmaker.ui.player.PlayerActivity
+import com.practicum.playlistmaker.ui.tracks.TrackViewHolder
 
 class HistoryAdapter(
     internal val history: ArrayList<Track>
