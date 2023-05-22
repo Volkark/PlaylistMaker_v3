@@ -10,17 +10,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import com.practicum.playlistmaker.R
 import com.practicum.playlistmaker.domain.models.Track
-import com.practicum.playlistmaker.data.NightModeStore
-import com.practicum.playlistmaker.ui.MediaActivity
-import com.practicum.playlistmaker.ui.SettingsActivity
+import com.practicum.playlistmaker.data.storage.NightModeStore
 import com.practicum.playlistmaker.ui.tracks.SearchActivity
 
-const val APP_NIGHT_MODE = "app_night_mode"
-const val SEARCH_HISTORY = "search_history"
-const val LAST_TRACK = "last_track"
-const val HISTORY_SIZE = 10
-
-var lastTrack : Track? = null
+var lastTrack : Track? = null                           // Последний выбранный трек
+var searchText : String = ""                            // Набранная строка поиска
+var lastSearchText : String = ""                        // Последняя строка, с которой был запущен поиск
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Работа с SharedPreferences через интерфейсы и абстрактные класса слоя data
-        val nightModeStore = NightModeStore(this, APP_NIGHT_MODE)
+        val nightModeStore = NightModeStore(this)
 
         if (nightModeStore.wasSaved())                              // Если тема приложения сохранена в SharedPreferences
             AppCompatDelegate                                           // Восстановить тему приложения

@@ -3,7 +3,6 @@ package com.practicum.playlistmaker.ui.player
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -14,20 +13,16 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.practicum.playlistmaker.util.Creator
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.data.TrackCover
+import com.practicum.playlistmaker.data.impl.CoverLoaderImpl
+import com.practicum.playlistmaker.data.impl.PlayerRepositotyImpl
 import com.practicum.playlistmaker.domain.models.Track
+import com.practicum.playlistmaker.presentation.player.PlayerView
 import com.practicum.playlistmaker.ui.lastTrack
-import java.text.SimpleDateFormat
-import java.util.*
 
-class PlayerActivity : AppCompatActivity() {
-
-    enum class PlayerModes {
-        PLR_NO_READY,       // Трек не готов к воспроизведению
-        PLR_PLAYING,        // Трек проигрывается
-        PLR_PAUSE,          // Трек остановлен
-    }
+class PlayerActivity : AppCompatActivity(), PlayerView {
+    private val playerPresenter = Creator.providePlayerPresenter(this, this)
 
     // View-элементы Activity, используемые в разных функциях класса (не только в onCreate)
     private val noReadyHoop by lazy { findViewById<ProgressBar>(R.id.progressBarPlayer) }
@@ -37,26 +32,6 @@ class PlayerActivity : AppCompatActivity() {
     private val selectedHeartButton by lazy { findViewById<ImageView>(R.id.circle_button_heart_selected) }
 
     private val playTime by lazy { findViewById<TextView>(R.id.playback_time) }
-
-    private val mediaPlayer = MediaPlayer()
-    private var playerState : PlayerModes = PlayerModes.PLR_NO_READY
-    private var heartState : Boolean = false
-
-    private val handler = Handler(Looper.getMainLooper())
-    private val playTimeEvent = Runnable {
-        val newTime = SimpleDateFormat("mm:ss", Locale.getDefault()).format(mediaPlayer.currentPosition)
-        if (newTime != playTime.text)
-            playTime.setText(newTime)
-        setPlayTimeEvent()
-    }
-
-    private fun setPlayTimeEvent() {
-        handler.postDelayed(playTimeEvent, 100)
-    }
-
-    private fun removePlayTimeEvent() {
-        handler.removeCallbacks(playTimeEvent)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,98 +55,89 @@ class PlayerActivity : AppCompatActivity() {
         val country = findViewById<TextView>(R.id.cont5)
         val artwork =  findViewById<ImageView>(R.id.artworkUrl512х512)
 
-        // lastTrack - глобальная переменная для передачи выбранного трека в Activity аудиоплеера
-        if (lastTrack != null) {
-            trackName.setText(lastTrack!!.trackName)
-            artistName.setText(lastTrack!!.artistName)
-            trackTime.setText(Track.trackTimeFormat(lastTrack!!.trackTimeMillis))
-            collect.setText(lastTrack!!.collectionName)
-            year.setText(lastTrack!!.releaseDate.substring(0,4))
-            genre.setText(lastTrack!!.primaryGenreName)
-            country.setText(lastTrack!!.country)
-            TrackCover.set(artwork, lastTrack!!.artworkUrl100)      // Установка картинки трека
+        val lastTrack = PlayerRepositotyImpl().selectedTrack(this)
 
-            val trackUrl : String? = lastTrack?.previewUrl
+        if (lastTrack != null) {
+            trackName.setText(lastTrack.trackName)
+            artistName.setText(lastTrack.artistName)
+            trackTime.setText(lastTrack.trackTime)
+            collect.setText(lastTrack.collectionName)
+            year.setText(lastTrack.releaseYear)
+            genre.setText(lastTrack.primaryGenreName)
+            country.setText(lastTrack.country)
+
+            val coverUrl : String = lastTrack.artworkUrl100
+            if (!coverUrl.isNullOrBlank() && coverUrl.length >= 10) {
+                CoverLoaderImpl()
+                    .load(artwork, coverUrl)
+            }
+
+            val trackUrl : String = lastTrack.previewUrl
             if (!trackUrl.isNullOrBlank() && trackUrl.length >= 10) {
                 preparePlayer(trackUrl)
             }
         }
-        else { finish() }
+        else {
+            finish()
+            return
+        }
 
         // переключение кнопок восроизведения и паузы
         playButton.setOnClickListener {
-            startPlayer()
+            playerPresenter.start()
         }
         pauseButton.setOnClickListener {
-            pausePlayer()
+            playerPresenter.stop()
         }
         heartButton.setOnClickListener {
-            selectedHeartButton.visibility = View.VISIBLE
-            heartButton.visibility = View.INVISIBLE
-            heartState = true
+            playerPresenter.heart(true)
         }
         selectedHeartButton.setOnClickListener {
+            playerPresenter.heart(false)
+        }
+    }
+
+    override fun heartState(state : Boolean) {
+        if (state) {
+            selectedHeartButton.visibility = View.VISIBLE
+            heartButton.visibility = View.INVISIBLE
+        } else {
             selectedHeartButton.visibility = View.INVISIBLE
             heartButton.visibility = View.VISIBLE
-            heartState = false
         }
+    }
+
+    override fun playingState() {
+        playButton.visibility = View.INVISIBLE
+        pauseButton.visibility = View.VISIBLE
+    }
+
+    override fun pauseState() {
+        pauseButton.visibility = View.INVISIBLE
+        playButton.visibility = View.VISIBLE
+    }
+
+    override fun readyState() {
+        noReadyHoop.visibility = View.INVISIBLE
+        pauseState()
+    }
+
+    override fun timing(newTime : String) {
+        if (newTime != playTime.text)
+            playTime.setText(newTime)
     }
 
     override fun onPause() {
         super.onPause()
-        if (!heartState)
-            pausePlayer()
+        playerPresenter.lostFocus()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        removePlayTimeEvent()
-        mediaPlayer.release()
+        playerPresenter.destroy()
     }
 
     private fun preparePlayer(trackUrl:String) {
-        mediaPlayer.setDataSource(trackUrl)
-        mediaPlayer.prepareAsync()
-        mediaPlayer.setOnPreparedListener {
-            noReadyHoop.visibility = View.INVISIBLE
-            pauseButton.visibility = View.INVISIBLE
-            playButton.visibility = View.VISIBLE
-            playerState = PlayerModes.PLR_PAUSE
-        }
-        mediaPlayer.setOnCompletionListener {
-            pausePlayer()
-            playTime.setText("0:00")
-            // Если сердце выбрано, то запустить снова на проигрывание
-            if (heartState)
-                startPlayer()
-        }
-    }
-
-    private fun startPlayer() {
-        if (playerState == PlayerModes.PLR_PAUSE) {
-            playButton.visibility = View.INVISIBLE
-            pauseButton.visibility = View.VISIBLE
-            mediaPlayer.start()
-            playerState = PlayerModes.PLR_PLAYING
-            setPlayTimeEvent()
-        }
-    }
-
-    private fun pausePlayer() {
-        if (playerState == PlayerModes.PLR_PLAYING) {
-            pauseButton.visibility = View.INVISIBLE
-            playButton.visibility = View.VISIBLE
-            mediaPlayer.pause()
-            playerState = PlayerModes.PLR_PAUSE
-            removePlayTimeEvent()
-        }
-    }
-
-    companion object {
-        // Метод запуска экрана аудиоплеера без создания экземпляра класса с передачей в качестве параметра выбранного трека и контекста
-        fun run(track : Track, context : Context) {
-            lastTrack = track
-            ContextCompat.startActivity(context, Intent(context, PlayerActivity::class.java),null)
-        }
+        playerPresenter.create(trackUrl)
     }
 }
