@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.data.impl.CoverLoaderImpl
+import com.practicum.playlistmaker.data.CoverLoader
 import com.practicum.playlistmaker.domain.models.Track
 
 class TrackViewHolder(parentView: ViewGroup) : RecyclerView.ViewHolder(
@@ -27,7 +27,7 @@ class TrackViewHolder(parentView: ViewGroup) : RecyclerView.ViewHolder(
         trackName.setText(track.trackName)
         artistName.setText(track.artistName)
         trackTime.setText(track.trackTime)
-        CoverLoaderImpl()
+        CoverLoader
             .loadSmall(artwork, track.artworkUrl100)
     }
 }

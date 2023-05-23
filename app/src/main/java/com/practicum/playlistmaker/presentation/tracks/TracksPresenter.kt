@@ -12,8 +12,8 @@ import com.practicum.playlistmaker.ui.searchText
 // Поворот экрана: onPause -> onStop -> onSaveInstanceState -> onDestroy ->
 // -> onCreate -> onStart -> onRestoreInstanceState -> onResume
 
-class TracksSearchPresenter(private val view: TracksView,
-                            private val context: Context) {
+class TracksPresenter(private val view: TracksView,
+                      private val context: Context) {
 
     private val tracksInteractor = Creator.provideTracksInteractor(context)
 
@@ -40,6 +40,22 @@ class TracksSearchPresenter(private val view: TracksView,
 
     fun onDestroy() {
         clearSearchStartTimeOut()
+    }
+
+    fun getHistory() : ArrayList<Track> {
+        return tracksInteractor.getTracksHistory(context)
+    }
+
+    fun clearHistory(context : Context, tracks : ArrayList<Track>) {
+        tracksInteractor.clearTracksHistory(context, tracks)
+    }
+
+    fun updateHistory(tracks : ArrayList<Track>, track : Track) {
+        tracksInteractor.updateTracksHistory(context, tracks, track)
+    }
+
+    fun updateChoice(context : Context, position : Int) {
+        tracksInteractor.updatePosition(context, position)
     }
 
     // Организация запроса

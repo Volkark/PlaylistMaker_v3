@@ -1,18 +1,9 @@
 package com.practicum.playlistmaker.presentation.player
 
-import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
-import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.data.impl.CoverLoaderImpl
-import com.practicum.playlistmaker.presentation.tracks.TracksView
-import com.practicum.playlistmaker.ui.lastTrack
-import com.practicum.playlistmaker.ui.player.PlayerActivity
+import com.practicum.playlistmaker.data.dto.PlayerDto
 import com.practicum.playlistmaker.util.Creator
 
 // Состояния плеера
@@ -25,7 +16,7 @@ private enum class PlayerModes {
 class PlayerPresenter(private val view: PlayerView,
                       private val context: Context) {
 
-    private val playerInteractor = Creator.providePlayerInteractor()
+    private val playerInteractor = Creator.providePlayerInteractor(context)
 
     private var playerState: PlayerModes = PlayerModes.PLR_NO_READY
     private var heartState : Boolean = false
@@ -44,8 +35,14 @@ class PlayerPresenter(private val view: PlayerView,
         handler.removeCallbacks(playTimeEvent)
     }
 
-    fun create(source: String) {
-        playerInteractor.create(source, ::readyForStart, ::endOfTrack)
+    fun create() {
+        val track = playerInteractor.getTrack()
+        if (track != null) {
+            val trackUrl: String = track.previewUrl
+            if (trackUrl.isNotBlank() && trackUrl.length >= 10)
+                playerInteractor.create(PlayerDto(trackUrl, ::readyForStart, ::endOfTrack))
+        }
+        view.trackState(track)
     }
 
     fun destroy() {

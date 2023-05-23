@@ -13,7 +13,6 @@ import com.practicum.playlistmaker.domain.models.Track
 import com.practicum.playlistmaker.data.storage.NightModeStore
 import com.practicum.playlistmaker.ui.tracks.SearchActivity
 
-var lastTrack : Track? = null                           // Последний выбранный трек
 var searchText : String = ""                            // Набранная строка поиска
 var lastSearchText : String = ""                        // Последняя строка, с которой был запущен поиск
 

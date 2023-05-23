@@ -36,4 +36,3 @@ class TrackAdapter(
 
     override fun getItemCount() : Int = tracks.size
 }
-
