@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.data.NightModeStore
+import com.practicum.playlistmaker.data.storage.NightModeStore
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,11 +54,7 @@ class SettingsActivity : AppCompatActivity() {
             appNightMode = AppCompatDelegate.MODE_NIGHT_YES
         AppCompatDelegate.setDefaultNightMode(appNightMode)
         // Сохранить выбранную тему в SharedPreferences
-        NightModeStore(this, APP_NIGHT_MODE).save(appNightMode)
-/*        val sharedPrefs = getSharedPreferences(PLAY_LIST_MAKER_PREFERENCES, MODE_PRIVATE)
-        sharedPrefs.edit()
-            .putString(APP_NIGHT_MODE, Gson().toJson(appNightMode))
-            .apply() */
+        NightModeStore(this).save(appNightMode)
     }
 
     // Обработка нажатия кнопки <Поделится приложением>

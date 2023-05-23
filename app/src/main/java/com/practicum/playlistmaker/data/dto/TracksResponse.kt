@@ -4,5 +4,5 @@ import com.practicum.playlistmaker.domain.models.Track
 
 data class TracksResponse(
     val resultCount: Int,
-    val results: ArrayList<Track>
+    val results: ArrayList<TrackDto>
 ) : Response()
