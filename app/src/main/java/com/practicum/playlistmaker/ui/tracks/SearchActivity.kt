@@ -15,16 +15,13 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.practicum.playlistmaker.util.Creator
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.data.storage.ChoiceStore
-import com.practicum.playlistmaker.data.storage.SEARCH_HISTORY
-import com.practicum.playlistmaker.data.storage.TracksStore
 import com.practicum.playlistmaker.domain.models.Track
 import com.practicum.playlistmaker.presentation.tracks.ScreenModes
 import com.practicum.playlistmaker.presentation.tracks.TrackAdapterView
 import com.practicum.playlistmaker.presentation.tracks.TracksView
 import com.practicum.playlistmaker.ui.lastSearchText
-import com.practicum.playlistmaker.ui.player.PlayerActivity
 import com.practicum.playlistmaker.ui.searchText
+import com.practicum.playlistmaker.ui.player.PlayerActivity
 
 class SearchActivity : AppCompatActivity(), TracksView, TrackAdapterView {
 
@@ -45,7 +42,7 @@ class SearchActivity : AppCompatActivity(), TracksView, TrackAdapterView {
     // View-элементы Activity, используемые в разных методах класса SearchActivity (не в одном)
     // для предотвращения повторных вызовов findViewById при обращении к этим View-элементам
     private val searchEditText by lazy { findViewById<EditText>(R.id.inputEditText) }   // Текст запроса
-    private val updateButton by lazy { findViewById<Button>(R.id.button_update) }      // Кнопка перезапроса
+    private val updateButton by lazy { findViewById<Button>(R.id.button_update) }       // Кнопка перезапроса
     private val recyclerTracks by lazy { findViewById<RecyclerView>(R.id.tracks_list) } // Результаты запроса
 
     // Переменные
@@ -144,11 +141,7 @@ class SearchActivity : AppCompatActivity(), TracksView, TrackAdapterView {
             .setOnClickListener { finish() }
 
         // Считывание истории поиска из Shared Preferences
-        val tracksStore = TracksStore(this, SEARCH_HISTORY)
-        if (tracksStore.wasSaved()) {
-            historyTracks.clear()
-            historyTracks.addAll(tracksStore.getStored()!!)
-        }
+        historyTracks.addAll(tracksSearchPresenter.getHistory())
 
         // Инициализация RecyclerView для просмотра результато поиска
         recyclerTracks.layoutManager = LinearLayoutManager(this)
@@ -259,9 +252,7 @@ class SearchActivity : AppCompatActivity(), TracksView, TrackAdapterView {
         // Реализация нажатия кнопки "Очистить историю"
         findViewById<Button>(R.id.button_clear_history)
             .setOnClickListener {
-                historyAdapter.history.clear()
-                TracksStore(this, SEARCH_HISTORY)
-                    .save(historyAdapter.history)
+                tracksSearchPresenter.clearHistory(this, historyAdapter.history)
                 updateTracksList()
                 setSearchScreenMode(ScreenModes.SCR_READY)
             }
@@ -360,20 +351,11 @@ class SearchActivity : AppCompatActivity(), TracksView, TrackAdapterView {
     }
 
     override fun updateChoice(position : Int) {
-        // Сохранение позиции выбранного трека в Shared Preferеnces
-        ChoiceStore(this).save(position)
+        tracksSearchPresenter.updateChoice(this, position)
     }
 
     override fun updateHistory(track : Track) {
-        val history = historyAdapter.history
-        if (history.contains(track)) history.remove(track)
-        else if (history.size == HISTORY_SIZE) history.removeAt(HISTORY_SIZE - 1)
-        history.add(0, track)
-        // Сохранение истории поиска в Shared Prefernces
-        TracksStore(this, SEARCH_HISTORY)
-            .save(history)
-        // Сохранение 0, как позиции выбранного трека в Shared Preferеnces
-        updateChoice(0)
+        tracksSearchPresenter.updateHistory(historyAdapter.history, track)
     }
 
     override fun startPlayerActivity() {

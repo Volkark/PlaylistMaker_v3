@@ -1,25 +1,19 @@
 package com.practicum.playlistmaker.ui.player
 
-import android.content.Context
-import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.practicum.playlistmaker.util.Creator
 import com.practicum.playlistmaker.R
-import com.practicum.playlistmaker.data.impl.CoverLoaderImpl
+import com.practicum.playlistmaker.data.CoverLoader
 import com.practicum.playlistmaker.data.impl.PlayerRepositotyImpl
 import com.practicum.playlistmaker.domain.models.Track
 import com.practicum.playlistmaker.presentation.player.PlayerView
-import com.practicum.playlistmaker.ui.lastTrack
 
 class PlayerActivity : AppCompatActivity(), PlayerView {
     private val playerPresenter = Creator.providePlayerPresenter(this, this)
@@ -30,6 +24,14 @@ class PlayerActivity : AppCompatActivity(), PlayerView {
     private val pauseButton by lazy { findViewById<ImageView>(R.id.circle_button_pause) }
     private val heartButton by lazy { findViewById<ImageView>(R.id.circle_button_heart) }
     private val selectedHeartButton by lazy { findViewById<ImageView>(R.id.circle_button_heart_selected) }
+    private val trackName by lazy { findViewById<TextView>(R.id.track_name_ap) }
+    private val artistName by lazy { findViewById<TextView>(R.id.artist_ap) }
+    private val trackTime by lazy { findViewById<TextView>(R.id.cont1) }
+    private val collect by lazy { findViewById<TextView>(R.id.cont2) }
+    private val year by lazy { findViewById<TextView>(R.id.cont3) }
+    private val genre by lazy { findViewById<TextView>(R.id.cont4) }
+    private val country by lazy { findViewById<TextView>(R.id.cont5) }
+    private val artwork by lazy {  findViewById<ImageView>(R.id.artworkUrl512х512) }
 
     private val playTime by lazy { findViewById<TextView>(R.id.playback_time) }
 
@@ -45,42 +47,8 @@ class PlayerActivity : AppCompatActivity(), PlayerView {
         findViewById<Button>(R.id.return_from_player)
             .setOnClickListener { finish() }
 
-        // View-элементы Activity, используемые только в onCreate
-        val trackName = findViewById<TextView>(R.id.track_name_ap)
-        val artistName = findViewById<TextView>(R.id.artist_ap)
-        val trackTime = findViewById<TextView>(R.id.cont1)
-        val collect = findViewById<TextView>(R.id.cont2)
-        val year = findViewById<TextView>(R.id.cont3)
-        val genre = findViewById<TextView>(R.id.cont4)
-        val country = findViewById<TextView>(R.id.cont5)
-        val artwork =  findViewById<ImageView>(R.id.artworkUrl512х512)
-
-        val lastTrack = PlayerRepositotyImpl().selectedTrack(this)
-
-        if (lastTrack != null) {
-            trackName.setText(lastTrack.trackName)
-            artistName.setText(lastTrack.artistName)
-            trackTime.setText(lastTrack.trackTime)
-            collect.setText(lastTrack.collectionName)
-            year.setText(lastTrack.releaseYear)
-            genre.setText(lastTrack.primaryGenreName)
-            country.setText(lastTrack.country)
-
-            val coverUrl : String = lastTrack.artworkUrl100
-            if (!coverUrl.isNullOrBlank() && coverUrl.length >= 10) {
-                CoverLoaderImpl()
-                    .load(artwork, coverUrl)
-            }
-
-            val trackUrl : String = lastTrack.previewUrl
-            if (!trackUrl.isNullOrBlank() && trackUrl.length >= 10) {
-                preparePlayer(trackUrl)
-            }
-        }
-        else {
-            finish()
-            return
-        }
+        // Инициализация плеера
+        playerPresenter.create()
 
         // переключение кнопок восроизведения и паузы
         playButton.setOnClickListener {
@@ -89,12 +57,34 @@ class PlayerActivity : AppCompatActivity(), PlayerView {
         pauseButton.setOnClickListener {
             playerPresenter.stop()
         }
+
+        // переключение кнопки "сердца"
         heartButton.setOnClickListener {
             playerPresenter.heart(true)
         }
         selectedHeartButton.setOnClickListener {
             playerPresenter.heart(false)
         }
+    }
+
+    override fun trackState(track : Track?) {
+        if (track != null) {
+            trackName.setText(track.trackName)
+            artistName.setText(track.artistName)
+            trackTime.setText(track.trackTime)
+            collect.setText(track.collectionName)
+            year.setText(track.releaseYear)
+            genre.setText(track.primaryGenreName)
+            country.setText(track.country)
+
+            val coverUrl : String = track.artworkUrl100
+            if (coverUrl.isNotBlank() && coverUrl.length >= 10) {
+                CoverLoader
+                    .load(artwork, coverUrl)
+                }
+            }
+        else
+            finish()
     }
 
     override fun heartState(state : Boolean) {
@@ -135,9 +125,5 @@ class PlayerActivity : AppCompatActivity(), PlayerView {
     override fun onDestroy() {
         super.onDestroy()
         playerPresenter.destroy()
-    }
-
-    private fun preparePlayer(trackUrl:String) {
-        playerPresenter.create(trackUrl)
     }
 }
